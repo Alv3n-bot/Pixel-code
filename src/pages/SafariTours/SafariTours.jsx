@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { Calendar, Users, MapPin, Clock, Star, X, Check, Loader2, Menu } from 'lucide-react';
 import HeroImage from './images/Hero.jpg';
 
 const SafariTours = () => {
@@ -90,33 +89,26 @@ const SafariTours = () => {
       setAvailability(null);
       return;
     }
-
     const selectedDate = new Date(date);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
-
     if (selectedDate < today) {
       setAvailability({ status: 'invalid', message: 'Please select a future date' });
       return;
     }
-
     const tour = tours.find(t => t.id === parseInt(tourId));
     const dayOfWeek = selectedDate.getDay();
     const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-    
     let spotsLeft = tour.maxCapacity;
-
     if (isWeekend) {
       spotsLeft = Math.floor(spotsLeft * 0.4);
     } else {
       spotsLeft = Math.floor(spotsLeft * 0.7);
     }
-
     const randomFactor = Math.random();
     if (randomFactor < 0.2) {
       spotsLeft = 0;
     }
-
     if (spotsLeft === 0) {
       setAvailability({ status: 'unavailable', message: 'Fully booked for this date' });
     } else if (spotsLeft <= 3) {
@@ -138,13 +130,11 @@ const SafariTours = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     setTimeout(() => {
       setIsSubmitting(false);
       setShowSuccess(true);
       setFormData({ name: '', email: '', tour: '', date: '', guests: 1 });
       setAvailability(null);
-
       setTimeout(() => {
         setShowSuccess(false);
       }, 5000);
@@ -190,7 +180,7 @@ const SafariTours = () => {
             <button onClick={() => scrollToSection('contact')} className="hover:text-amber-300 transition-colors">Contact</button>
           </nav>
           <button className="md:hidden" onClick={() => setIsMenuOpen(!isMenuOpen)}>
-            <Menu className="w-6 h-6" />
+            📍
           </button>
         </div>
         {isMenuOpen && (
@@ -205,12 +195,11 @@ const SafariTours = () => {
           </div>
         )}
       </header>
-
       <div id="home" className="relative h-screen">
         <div
-  className="absolute inset-0 bg-cover bg-center"
-  style={{ backgroundImage: `url(${HeroImage})` }}
-         >
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: `url(${HeroImage})` }}
+        >
           <div className="absolute inset-0 bg-black/40" />
         </div>
         <div className="relative z-10 h-full flex items-center justify-center text-center px-4">
@@ -230,7 +219,6 @@ const SafariTours = () => {
           </div>
         </div>
       </div>
-
       <section id="tours" className="py-20 px-4">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -241,7 +229,6 @@ const SafariTours = () => {
               Explore Kenya's premier national parks with our expertly crafted itineraries
             </p>
           </div>
-
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {tours.map((tour) => (
               <div
@@ -264,12 +251,10 @@ const SafariTours = () => {
                     {tour.name}
                   </h3>
                   <div className="flex items-center text-stone-600 text-sm mb-2">
-                    <MapPin className="w-4 h-4 mr-1" />
-                    {tour.location}
+                    📍 {tour.location}
                   </div>
                   <div className="flex items-center text-stone-600 text-sm mb-4">
-                    <Clock className="w-4 h-4 mr-1" />
-                    {tour.duration}
+                    ⏰ {tour.duration}
                   </div>
                   <button
                     onClick={() => openModal(tour)}
@@ -283,7 +268,6 @@ const SafariTours = () => {
           </div>
         </div>
       </section>
-
       <section id="booking" className="py-20 px-4 bg-gradient-to-b from-green-50 to-stone-50">
         <div className="max-w-3xl mx-auto">
           <div className="text-center mb-12">
@@ -294,17 +278,15 @@ const SafariTours = () => {
               Secure your spot on an extraordinary journey
             </p>
           </div>
-
           {showSuccess && (
             <div className="mb-8 bg-green-100 border-l-4 border-green-600 p-4 rounded-lg flex items-start">
-              <Check className="w-6 h-6 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
+              ✅
               <div>
                 <h3 className="font-bold text-green-900 mb-1">Booking Received!</h3>
                 <p className="text-green-800">Your safari booking has been received! We'll contact you shortly with confirmation details.</p>
               </div>
             </div>
           )}
-
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div>
@@ -320,7 +302,6 @@ const SafariTours = () => {
                   placeholder="John Doe"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-semibold text-stone-700 mb-2">
                   Email Address
@@ -335,10 +316,9 @@ const SafariTours = () => {
                 />
               </div>
             </div>
-
             <div className="mb-6">
               <label className="block text-sm font-semibold text-stone-700 mb-2">
-                Select Tour
+                📅 Select Tour
               </label>
               <select
                 name="tour"
@@ -354,12 +334,10 @@ const SafariTours = () => {
                 ))}
               </select>
             </div>
-
             <div className="grid md:grid-cols-2 gap-6 mb-6">
               <div>
                 <label className="block text-sm font-semibold text-stone-700 mb-2">
-                  <Calendar className="inline w-4 h-4 mr-1" />
-                  Travel Date
+                  📅 Travel Date
                 </label>
                 <input
                   type="date"
@@ -370,11 +348,9 @@ const SafariTours = () => {
                   className="w-full px-4 py-3 border border-stone-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent outline-none transition"
                 />
               </div>
-
               <div>
                 <label className="block text-sm font-semibold text-stone-700 mb-2">
-                  <Users className="inline w-4 h-4 mr-1" />
-                  Number of Guests
+                  👥 Number of Guests
                 </label>
                 <input
                   type="number"
@@ -387,7 +363,6 @@ const SafariTours = () => {
                 />
               </div>
             </div>
-
             {availability && (
               <div className={`mb-6 p-4 rounded-lg ${
                 availability.status === 'available' ? 'bg-green-50 border border-green-200' :
@@ -409,7 +384,6 @@ const SafariTours = () => {
                 </p>
               </div>
             )}
-
             <button
               onClick={handleSubmit}
               disabled={isSubmitting || availability?.status === 'unavailable' || availability?.status === 'invalid'}
@@ -417,7 +391,7 @@ const SafariTours = () => {
             >
               {isSubmitting ? (
                 <>
-                  <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                  ⏳
                   Processing...
                 </>
               ) : (
@@ -427,7 +401,6 @@ const SafariTours = () => {
           </div>
         </div>
       </section>
-
       <section id="testimonials" className="py-20 px-4 bg-green-900">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -438,7 +411,6 @@ const SafariTours = () => {
               Hear from our satisfied adventurers
             </p>
           </div>
-
           <div className="grid md:grid-cols-3 gap-8">
             {testimonials.map((testimonial, index) => (
               <div
@@ -447,7 +419,7 @@ const SafariTours = () => {
               >
                 <div className="flex mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 fill-amber-500 text-amber-500" />
+                    <span key={i} className="w-5 h-5 fill-amber-500 text-amber-500">★</span>
                   ))}
                 </div>
                 <p className="text-stone-700 mb-6 italic">
@@ -462,7 +434,6 @@ const SafariTours = () => {
           </div>
         </div>
       </section>
-
       <section id="contact" className="py-20 px-4 bg-stone-50">
         <div className="max-w-7xl mx-auto text-center">
           <h2 className="text-4xl md:text-5xl font-bold text-green-900 mb-8">
@@ -476,11 +447,9 @@ const SafariTours = () => {
           </div>
         </div>
       </section>
-
       <footer className="bg-green-900 text-white py-6 text-center">
         <p>&copy; {new Date().getFullYear()} Safari Tours Kenya. All rights reserved.</p>
       </footer>
-
       {showModal && selectedTour && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70">
           <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
@@ -495,46 +464,38 @@ const SafariTours = () => {
                 onClick={closeModal}
                 className="absolute top-4 right-4 bg-white/90 hover:bg-white p-2 rounded-full transition"
               >
-                <X className="w-6 h-6" />
+                ✕
               </button>
             </div>
-
             <div className="p-8">
               <h2 className="text-3xl font-bold text-green-900 mb-2">
                 {selectedTour.name}
               </h2>
               <div className="flex items-center text-stone-600 mb-4">
-                <MapPin className="w-5 h-5 mr-2" />
-                {selectedTour.location}
+                📍 {selectedTour.location}
               </div>
-
               <div className="flex items-center gap-6 mb-6 text-lg">
                 <div className="flex items-center">
-                  <Clock className="w-5 h-5 mr-2 text-green-700" />
-                  <span className="font-semibold">{selectedTour.duration}</span>
+                  ⏰ <span className="font-semibold">{selectedTour.duration}</span>
                 </div>
                 <div className="flex items-center">
                   <span className="text-2xl font-bold text-amber-500">${selectedTour.price}</span>
                   <span className="text-stone-600 ml-2">per person</span>
                 </div>
               </div>
-
               <p className="text-stone-700 mb-6 leading-relaxed">
                 {selectedTour.description}
               </p>
-
               <h3 className="text-xl font-bold text-green-900 mb-4">
                 Tour Highlights
               </h3>
               <ul className="space-y-3 mb-8">
                 {selectedTour.highlights.map((highlight, index) => (
                   <li key={index} className="flex items-start">
-                    <Check className="w-5 h-5 text-green-600 mr-3 flex-shrink-0 mt-0.5" />
-                    <span className="text-stone-700">{highlight}</span>
+                    ✅ <span className="text-stone-700">{highlight}</span>
                   </li>
                 ))}
               </ul>
-
               <button
                 onClick={selectTourFromModal}
                 className="w-full bg-amber-500 hover:bg-amber-600 text-white py-4 rounded-lg font-semibold text-lg transition-colors"
