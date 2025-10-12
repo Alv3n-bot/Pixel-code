@@ -103,10 +103,10 @@ function Contact() {
         <p className="text-sm sm:text-base md:text-lg text-slate-300 mb-8 sm:mb-12 md:mb-14 lg:mb-16 text-center max-w-2xl mx-auto px-2">
           Get a quick quote or discuss your next web project. Typical reply time: under 24 hours.
         </p>
-        <div className="grid grid-cols-[1.5fr_1fr] md:grid-cols-[1.3fr_1fr] lg:grid-cols-[1fr_400px] gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr] lg:grid-cols-[1fr_400px] gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
           <form
             onSubmit={handleSubmit}
-            className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6"
+            className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 md:row-span-3"
           >
             {[
               { label: "Full name", name: "name", type: "text", placeholder: "Jane Mwangi", required: true },
@@ -171,22 +171,13 @@ function Contact() {
               />
             </div>
 
-            <div className="flex gap-2 sm:gap-3 md:gap-4 flex-wrap">
-              <button
-                type="submit"
-                className="flex-1 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm md:text-base hover:shadow-xl hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300"
-                disabled={isLoading}
-              >
-                {isLoading ? "Sending..." : "Send Request"}
-              </button>
-              <button
-                type="button"
-                className="backdrop-blur-xl bg-white/10 border border-white/20 text-white font-bold px-3 sm:px-4 md:px-6 py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm md:text-base hover:bg-white/20 transition-all"
-                onClick={handlePrefill}
-              >
-                Prefill Demo
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm md:text-base hover:shadow-xl hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300"
+              disabled={isLoading}
+            >
+              {isLoading ? "Sending..." : "Send Request"}
+            </button>
 
             {message && (
               <div className="bg-purple-500/20 border border-purple-500/30 text-purple-200 p-3 sm:p-3.5 md:p-4 rounded-lg sm:rounded-xl text-[10px] sm:text-xs md:text-sm">
@@ -195,36 +186,36 @@ function Contact() {
             )}
           </form>
 
-          <div className="space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6">
-            <div className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8">
-              <h3 className="font-black text-base sm:text-lg md:text-xl lg:text-2xl text-white mb-3 sm:mb-4 md:mb-5 lg:mb-6">Quick Quote</h3>
-              <p className="text-[10px] sm:text-xs md:text-sm text-slate-400 mb-3 sm:mb-4 md:mb-5 lg:mb-6">Typical timelines & starting prices:</p>
-              <ul className="space-y-2 sm:space-y-2.5 md:space-y-3 lg:space-y-4 text-slate-300 text-[10px] sm:text-xs md:text-sm">
-                <li className="flex items-start gap-2 sm:gap-2.5 md:gap-3">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-purple-400 mt-1 sm:mt-1.5 md:mt-2 flex-shrink-0"></div>
+          <div className="grid grid-cols-3 md:grid-cols-1 gap-3 sm:gap-4 md:gap-5 lg:gap-6 md:contents">
+            <div className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8">
+              <h3 className="font-black text-xs sm:text-sm md:text-xl lg:text-2xl text-white mb-2 sm:mb-3 md:mb-5 lg:mb-6">Quick Quote</h3>
+              <p className="text-[9px] sm:text-[10px] md:text-sm text-slate-400 mb-2 sm:mb-3 md:mb-5 lg:mb-6 leading-tight">Typical timelines & starting prices:</p>
+              <ul className="space-y-1.5 sm:space-y-2 md:space-y-3 lg:space-y-4 text-slate-300 text-[9px] sm:text-[10px] md:text-sm">
+                <li className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
+                  <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 md:w-2 md:h-2 rounded-full bg-purple-400 mt-1 flex-shrink-0"></div>
                   <span className="leading-tight">Starter: 1–2 weeks • KSh 25,000+</span>
                 </li>
-                <li className="flex items-start gap-2 sm:gap-2.5 md:gap-3">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-pink-400 mt-1 sm:mt-1.5 md:mt-2 flex-shrink-0"></div>
+                <li className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
+                  <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 md:w-2 md:h-2 rounded-full bg-pink-400 mt-1 flex-shrink-0"></div>
                   <span className="leading-tight">Growth: 3–6 weeks • KSh 80,000+</span>
                 </li>
-                <li className="flex items-start gap-2 sm:gap-2.5 md:gap-3">
-                  <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-orange-400 mt-1 sm:mt-1.5 md:mt-2 flex-shrink-0"></div>
+                <li className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
+                  <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 md:w-2 md:h-2 rounded-full bg-orange-400 mt-1 flex-shrink-0"></div>
                   <span className="leading-tight">Enterprise: 6+ weeks • Custom pricing</span>
                 </li>
               </ul>
             </div>
 
-            <div className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8">
-              <h3 className="font-black text-sm sm:text-base md:text-lg lg:text-xl text-white mb-2 sm:mb-3 md:mb-4">Payment</h3>
-              <p className="text-[10px] sm:text-xs md:text-sm text-slate-300 leading-tight">
+            <div className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8">
+              <h3 className="font-black text-xs sm:text-sm md:text-lg lg:text-xl text-white mb-1.5 sm:mb-2 md:mb-4">Payment</h3>
+              <p className="text-[9px] sm:text-[10px] md:text-sm text-slate-300 leading-tight">
                 Bank transfer, MPesa, or Stripe for card payments.
               </p>
             </div>
 
-            <div className="backdrop-blur-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-2xl sm:rounded-3xl p-4 sm:p-5 md:p-6 lg:p-8">
-              <h3 className="font-black text-sm sm:text-base md:text-lg lg:text-xl text-white mb-2 sm:mb-3 md:mb-4">Availability</h3>
-              <p className="text-[10px] sm:text-xs md:text-sm text-slate-200 leading-tight">
+            <div className="backdrop-blur-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8">
+              <h3 className="font-black text-xs sm:text-sm md:text-lg lg:text-xl text-white mb-1.5 sm:mb-2 md:mb-4">Availability</h3>
+              <p className="text-[9px] sm:text-[10px] md:text-sm text-slate-200 leading-tight">
                 Current lead time: <span className="font-bold">2 weeks</span> for new projects.
               </p>
             </div>

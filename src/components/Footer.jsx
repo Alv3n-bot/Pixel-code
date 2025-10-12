@@ -70,7 +70,7 @@ function Footer() {
               Contact
             </a>
             <a
-              href="#careers"
+              href="/careers"
               className="hover:text-purple-400 transition-colors leading-tight"
             >
               Careers

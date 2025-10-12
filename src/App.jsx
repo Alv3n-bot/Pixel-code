@@ -7,7 +7,7 @@ import FashionBoutique from './pages/FashionBoutique/FashionBoutique';
 import Restaurant from './pages/Restaurant/Restaurant';
 import LawFirm from './pages/LawFirm/LawFirm';
 import Fitness from './pages/fitness/Fitness';
-
+import Careers from './pages/careers/careers'
 //
 import Contact from './components/Contact';
 import Header from './components/Header';
@@ -59,7 +59,7 @@ function App() {
         <Route path= "/restaurant" element={<Restaurant />} />
         <Route path= "/law-firm" element={<LawFirm />} />
         <Route path= "/fitness-app" element={<Fitness />} />
-
+        <Route path= "/careers" element={<Careers />} />
       </Routes>
     </Router>
   );

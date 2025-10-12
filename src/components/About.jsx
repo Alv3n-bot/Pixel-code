@@ -10,8 +10,8 @@ function About() {
         About <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">Pixel & Code</span>
       </h2>
 
-      <div className="relative z-10 grid grid-cols-2 gap-3 sm:gap-6 md:gap-8 lg:gap-12 max-w-6xl mx-auto">
-        <div className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-6 sm:p-7 md:p-8 lg:p-10 space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 hover:border-purple-500/40 transition-all duration-500">
+      <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-6 md:gap-8 lg:gap-12 max-w-6xl mx-auto">
+        <div className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-6 sm:p-7 md:p-8 lg:p-10 space-y-4 sm:space-y-5 md:space-y-6 lg:space-y-8 hover:border-purple-500/40 transition-all duration-500 md:row-span-3">
           <p className="text-sm sm:text-base md:text-base lg:text-lg text-slate-300 leading-relaxed">
             <span className="text-white font-black text-base sm:text-lg md:text-lg lg:text-xl">Pixel & Code</span> is a Nairobi-based freelance web development studio focused on building fast, secure, and affordable websites for East African businesses. We blend clean design, reliable code, and local market insight.
           </p>
@@ -49,7 +49,7 @@ function About() {
           </div>
         </div>
 
-        <div className="space-y-4 sm:space-y-5 md:space-y-5 lg:space-y-6">
+        <div className="grid grid-cols-2 md:grid-cols-1 gap-3 sm:gap-4 md:gap-5 lg:gap-6 md:contents">
           <div className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-6 sm:p-6 md:p-7 lg:p-8 hover:border-purple-500/40 transition-all duration-500">
             <h3 className="font-black text-lg sm:text-xl md:text-xl lg:text-2xl text-white mb-4 sm:mb-5 md:mb-5 lg:mb-6">Contact</h3>
             <div className="space-y-3 sm:space-y-3.5 md:space-y-3.5 lg:space-y-4 text-slate-300 text-sm sm:text-sm md:text-base lg:text-base">
@@ -74,12 +74,12 @@ function About() {
               Every project includes clear scope, on-time delivery, and a <span className="font-bold text-white">30-day handover support window</span> after launch.
             </p>
           </div>
+        </div>
 
-          <div className="backdrop-blur-2xl bg-slate-900/50 border border-slate-700/30 rounded-2xl sm:rounded-3xl p-5 sm:p-5 md:p-5 lg:p-6 text-center">
-            <p className="text-xs sm:text-xs md:text-sm lg:text-sm text-slate-400 leading-tight">
-              Trusted by East African startups and small businesses since 2023
-            </p>
-          </div>
+        <div className="backdrop-blur-2xl bg-slate-900/50 border border-slate-700/30 rounded-2xl sm:rounded-3xl p-5 sm:p-5 md:p-5 lg:p-6 text-center md:col-span-2">
+          <p className="text-xs sm:text-xs md:text-sm lg:text-sm text-slate-400 leading-tight">
+            Trusted by East African startups and small businesses since 2023
+          </p>
         </div>
       </div>
     </section>
