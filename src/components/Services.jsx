@@ -63,38 +63,63 @@ function Services({ scrollToSection }) {
   useEffect(() => {
     async function fetchLocationAndRates() {
       try {
-        // Step 1: Get user country (IP-based)
         const locRes = await fetch("https://ipapi.co/json/");
         const locData = await locRes.json();
-        const countryCode = locData.country_code;
         const currencyCode = locData.currency || "KES";
 
-        // Step 2: Get exchange rate to user's currency
         const rateRes = await fetch(
-          `https://api.exchangerate.host/latest?base=KES&symbols=${currencyCode}`
+          `https://api.exchangerate-api.com/v4/latest/KES`
         );
         const rateData = await rateRes.json();
 
-        const conversionRate = rateData?.rates?.[currencyCode] || 1;
+        const conversionRate = rateData?.rates?.[currencyCode];
 
-        setCurrency(currencyCode);
-        setRate(conversionRate);
+        if (conversionRate && conversionRate > 0) {
+          setCurrency(currencyCode);
+          setRate(conversionRate);
 
-        // Optional: map symbols
-        const symbols = {
-          USD: "$",
-          EUR: "€",
-          GBP: "£",
-          INR: "₹",
-          KES: "KSh",
-          NGN: "₦",
-          ZAR: "R",
-          CAD: "CA$",
-          AUD: "A$",
-        };
-        setSymbol(symbols[currencyCode] || currencyCode);
+          const symbols = {
+            USD: "$",
+            EUR: "€",
+            GBP: "£",
+            INR: "₹",
+            KES: "KSh",
+            NGN: "₦",
+            ZAR: "R",
+            CAD: "CA$",
+            AUD: "A$",
+            JPY: "¥",
+            CNY: "¥",
+            BRL: "R$",
+            MXN: "MX$",
+            AED: "د.إ",
+            SAR: "﷼",
+            TRY: "₺",
+            RUB: "₽",
+            KRW: "₩",
+            SGD: "S$",
+            HKD: "HK$",
+            SEK: "kr",
+            NOK: "kr",
+            DKK: "kr",
+            CHF: "CHF",
+            PLN: "zł",
+            THB: "฿",
+            IDR: "Rp",
+            MYR: "RM",
+            PHP: "₱",
+            VND: "₫",
+            EGP: "E£",
+            ILS: "₪",
+            CLP: "CLP$",
+            ARS: "ARS$",
+            COP: "COL$",
+            PEN: "S/",
+          };
+          setSymbol(symbols[currencyCode] || currencyCode);
+        }
       } catch (err) {
-        console.error("Currency fetch failed:", err);
+        // Silently fail and keep default KES values
       }
     }
 
@@ -111,11 +136,9 @@ function Services({ scrollToSection }) {
       id="services"
       className="relative py-12 sm:py-16 md:py-24 px-4 sm:px-6 md:px-8"
     >
-      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-purple-950/30 to-slate-950 rounded-2xl sm:rounded-3xl"></div>
       <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 blur-[120px] rounded-full"></div>
 
-      {/* Header */}
       <div className="relative z-10 text-center max-w-4xl mx-auto mb-8 sm:mb-12 md:mb-16">
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 sm:mb-4 md:mb-6">
           Services &{" "}
@@ -123,11 +146,9 @@ function Services({ scrollToSection }) {
             Pricing
           </span>
         </h2>
-       
       </div>
 
-      {/* Services Grid */}
-      <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-7xl mx-auto">
+      <div className="relative z-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-7xl mx-auto">
         {SERVICES.map((service, idx) => (
           <div
             key={service.id}
@@ -136,7 +157,6 @@ function Services({ scrollToSection }) {
           >
             <div className="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-pink-600/10 rounded-xl md:rounded-2xl lg:rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             <div className="relative z-10">
-              {/* Title & Price */}
               <div className="flex flex-col items-start justify-between mb-2 sm:mb-3 md:mb-4 lg:mb-6 gap-1 sm:gap-2">
                 <div className="w-full">
                   <h3 className="font-black text-xs sm:text-sm md:text-lg lg:text-2xl text-white mb-0.5 sm:mb-1 md:mb-2 leading-tight">
@@ -151,7 +171,6 @@ function Services({ scrollToSection }) {
                 </div>
               </div>
 
-              {/* Features */}
               <ul className="space-y-1 sm:space-y-1.5 md:space-y-2 lg:space-y-3 mb-2 sm:mb-3 md:mb-4 lg:mb-6">
                 {service.features.map((feature, idx) => (
                   <li
@@ -166,12 +185,10 @@ function Services({ scrollToSection }) {
                 ))}
               </ul>
 
-              {/* Description */}
               <p className="text-[7px] sm:text-[8px] md:text-[10px] lg:text-xs text-slate-400 mb-2 sm:mb-3 md:mb-4 lg:mb-6 pb-2 sm:pb-3 md:pb-4 lg:pb-6 border-b border-slate-700/50 leading-tight">
                 {service.description}
               </p>
 
-              {/* Button */}
               <button
                 onClick={(e) => {
                   e.preventDefault();
