@@ -26,7 +26,7 @@ const POSITIONS = [
   },
   {
     id: 2,
-    title: "Full-Stack Developer",
+    title: "Back-End Developer",
     department: "Tech",
     type: "Part-time",
     location: "Nairobi",
@@ -94,7 +94,7 @@ const POSITIONS = [
     id: 5,
     title: "Sales Executive",
     department: "Sales",
-    type: "Full-time / Commission-based",
+    type: "part-time / Commission-based",
     location: "Nairobi",
     icon: Megaphone,
     description: "Drive business growth by connecting with clients and closing deals for AI-powered web solutions.",
@@ -132,7 +132,9 @@ const POSITIONS = [
       "Develop pricing strategies for AI-driven services",
       "Manage key client accounts and relationships"
     ]
-  }
+  },
+  
+
 ];
 
 function Careers() {
@@ -474,12 +476,12 @@ function Careers() {
           </h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { title: "Competitive Pay", desc: "Attractive compensation with performance-based incentives", icon: "💰" },
-              { title: "Flexible Work", desc: "Remote and part-time options for work-life balance", icon: "⏰" },
-              { title: "AI Innovation", desc: "Work with cutting-edge AI tools and technologies", icon: "🤖" },
-              { title: "Impactful Projects", desc: "Build AI-driven solutions for real-world clients", icon: "🚀" },
-              { title: "Collaborative Team", desc: "Join a dynamic team of creative professionals", icon: "🤝" },
-              { title: "Regional Impact", desc: "Drive the growth of AI-powered tech in East Africa", icon: "🌍" }
+              { title: "Competitive Pay", desc: "Attractive compensation with performance-based incentives", icon: "" },
+              { title: "Flexible Work", desc: "Remote and part-time options for work-life balance", icon: "" },
+              { title: "AI Innovation", desc: "Work with cutting-edge AI tools and technologies", icon: "" },
+              { title: "Impactful Projects", desc: "Build AI-driven solutions for real-world clients", icon: "" },
+              { title: "Collaborative Team", desc: "Join a dynamic team of creative professionals", icon: "" },
+              { title: "Regional Impact", desc: "Drive the growth of AI-powered tech in East Africa", icon: "" }
             ].map((benefit, idx) => (
               <div
                 key={idx}

@@ -123,11 +123,7 @@ function Services({ scrollToSection }) {
             Pricing
           </span>
         </h2>
-        <p className="text-sm sm:text-base md:text-lg text-slate-300 font-medium px-2">
-          Prices shown in{" "}
-          <span className="font-bold text-purple-400">{currency}</span> (
-          {symbol}) — auto-converted from Kenyan Shillings.
-        </p>
+       
       </div>
 
       {/* Services Grid */}
