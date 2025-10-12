@@ -172,12 +172,16 @@ function Contact() {
             </div>
 
             <button
-              type="submit"
-              className="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold py-2 sm:py-2.5 md:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm md:text-base hover:shadow-xl hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300"
-              disabled={isLoading}
-            >
-              {isLoading ? "Sending..." : "Send Request"}
-            </button>
+  type="submit"
+  disabled={isLoading}
+  className="relative w-full flex justify-center items-center group text-white font-bold text-[9px] sm:text-[10px] md:text-sm lg:text-base py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-md md:rounded-lg lg:rounded-xl bg-slate-800/40 border border-purple-500/20 hover:border-purple-400 transition-all duration-300"
+>
+  <span className="relative z-10 group-hover:text-purple-300 transition-all duration-300">
+    {isLoading ? "Sending..." : "Send Request"}
+  </span>
+  <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-pink-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md md:rounded-lg lg:rounded-xl"></div>
+</button>
+
 
             {message && (
               <div className="bg-purple-500/20 border border-purple-500/30 text-purple-200 p-3 sm:p-3.5 md:p-4 rounded-lg sm:rounded-xl text-[10px] sm:text-xs md:text-sm">

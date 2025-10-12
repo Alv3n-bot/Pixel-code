@@ -53,19 +53,33 @@ function About() {
           <div className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-6 sm:p-6 md:p-7 lg:p-8 hover:border-purple-500/40 transition-all duration-500">
             <h3 className="font-black text-lg sm:text-xl md:text-xl lg:text-2xl text-white mb-4 sm:mb-5 md:mb-5 lg:mb-6">Contact</h3>
             <div className="space-y-3 sm:space-y-3.5 md:space-y-3.5 lg:space-y-4 text-slate-300 text-sm sm:text-sm md:text-base lg:text-base">
-              <div className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3">
-                <Phone className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 text-purple-400" />
-                <span>+254 794 994 316</span>
-              </div>
-              <div className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3">
-                <Mail className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 text-purple-400" />
-                <span className="break-all">alvinkamotho@gmail.com</span>
-              </div>
-              <div className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3">
-                <Globe className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 text-purple-400" />
-                <span>Nairobi, Kenya</span>
-              </div>
-            </div>
+  
+  
+  
+      
+  
+  <div className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3 flex-wrap sm:flex-nowrap">
+    <Phone className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 text-purple-400 flex-shrink-0" />
+    <span className="text-[11px] sm:text-[12px] md:text-[14px] lg:text-[16px] whitespace-nowrap">
+      +254 794 994 316
+    </span>
+  </div>
+
+  <div className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3 flex-wrap sm:flex-nowrap">
+    <Mail className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 text-purple-400 flex-shrink-0" />
+    <span className="text-[11px] sm:text-[12px] md:text-[14px] lg:text-[16px] whitespace-nowrap overflow-hidden text-ellipsis">
+      alvinkamotho@gmail.com
+    </span>
+  </div>
+
+  <div className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3">
+    <Globe className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 text-purple-400 flex-shrink-0" />
+    <span className="text-[11px] sm:text-[12px] md:text-[14px] lg:text-[16px]">
+      Nairobi, Kenya
+    </span>
+  </div>
+</div>
+
           </div>
 
           <div className="backdrop-blur-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-2xl sm:rounded-3xl p-6 sm:p-6 md:p-7 lg:p-8">
