@@ -62,7 +62,7 @@ function Portfolio({ scrollToSection }) {
         <p className="text-sm sm:text-base md:text-lg text-slate-300 mb-8 sm:mb-12 md:mb-14 lg:mb-16 text-center max-w-2xl mx-auto px-2">
           A selection of concept projects showing clean, responsive, high-performing websites.
         </p>
-        <div className="grid grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6 max-w-6xl mx-auto">
           {PORTFOLIO.map((project) => (
             <Link
               key={project.id}
