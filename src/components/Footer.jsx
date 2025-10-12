@@ -1,4 +1,5 @@
 import { Mail, Phone, Instagram, Linkedin, Globe } from "lucide-react";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -69,12 +70,13 @@ function Footer() {
             >
               Contact
             </a>
-            <a
-              href="/careers"
-              className="hover:text-purple-400 transition-colors leading-tight"
-            >
-              Careers
-            </a>
+            <Link
+  to="/careers"
+  className="hover:text-purple-400 transition-colors leading-tight"
+>
+  Careers
+</Link>
+
           </div>
         </div>
       </div>
