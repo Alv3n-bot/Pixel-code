@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
+// ✅ Add this import
+import ScrollToTop from "./components/ScrollToTop";
+
 // pages
 import SafariTours from './pages/SafariTours/SafariTours';
 import FashionBoutique from './pages/FashionBoutique/FashionBoutique';
 import Restaurant from './pages/Restaurant/Restaurant';
 import LawFirm from './pages/LawFirm/LawFirm';
 import Fitness from './pages/fitness/Fitness';
-import Careers from './pages/careers/careers'
-//
+import Careers from './pages/careers/careers';
+//components
 import Contact from './components/Contact';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -16,7 +19,6 @@ import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import Hero from './components/Hero';
 import About from './components/About';
- // ✅ new import
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -52,14 +54,17 @@ function App() {
 
   return (
     <Router>
+     
+      <ScrollToTop />
+
       <Routes>
-        <Route path="/" element={<MainSite />} />             {/* your current homepage */}
-        <Route path="/safari-tours" element={<SafariTours />} /> {/* new Safari Tours page */}
-        <Route path= "/fashion-boutique" element={<FashionBoutique />} />
-        <Route path= "/restaurant" element={<Restaurant />} />
-        <Route path= "/law-firm" element={<LawFirm />} />
-        <Route path= "/fitness-app" element={<Fitness />} />
-        <Route path= "/careers" element={<Careers />} />
+        <Route path="/" element={<MainSite />} />
+        <Route path="/safari-tours" element={<SafariTours />} />
+        <Route path="/fashion-boutique" element={<FashionBoutique />} />
+        <Route path="/restaurant" element={<Restaurant />} />
+        <Route path="/law-firm" element={<LawFirm />} />
+        <Route path="/fitness-app" element={<Fitness />} />
+        <Route path="/careers" element={<Careers />} />
       </Routes>
     </Router>
   );
