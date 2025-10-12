@@ -45,81 +45,76 @@ const SERVICES = [
   },
 ];
 
-const CURRENCY_OPTIONS = [
-  { code: "KES", symbol: "KSh", name: "Kenyan Shilling" },
-  { code: "USD", symbol: "$", name: "US Dollar" },
-  { code: "EUR", symbol: "€", name: "Euro" },
-  { code: "GBP", symbol: "£", name: "British Pound" },
-  { code: "INR", symbol: "₹", name: "Indian Rupee" },
-  { code: "NGN", symbol: "₦", name: "Nigerian Naira" },
-  { code: "ZAR", symbol: "R", name: "South African Rand" },
-  { code: "CAD", symbol: "CA$", name: "Canadian Dollar" },
-  { code: "AUD", symbol: "A$", name: "Australian Dollar" },
-];
-
 function Services({ scrollToSection }) {
   const [currency, setCurrency] = useState("KES");
   const [symbol, setSymbol] = useState("KSh");
   const [rate, setRate] = useState(1);
-  const [isManualSelection, setIsManualSelection] = useState(false);
 
   useEffect(() => {
-    fetchRates();
-  }, []);
-
-  const fetchRates = async (targetCurrency = null) => {
-    try {
-      let currencyCode = targetCurrency;
-
-      if (!targetCurrency) {
+    async function fetchLocationAndRates() {
+      try {
         const locRes = await fetch("https://ipapi.co/json/");
         const locData = await locRes.json();
-        currencyCode = locData.currency || "KES";
+        const currencyCode = locData.currency || "KES";
+
+        const rateRes = await fetch(
+          `https://api.exchangerate-api.com/v4/latest/KES`
+        );
+        const rateData = await rateRes.json();
+
+        const conversionRate = rateData?.rates?.[currencyCode];
+
+        if (conversionRate && conversionRate > 0) {
+          setCurrency(currencyCode);
+          setRate(conversionRate);
+
+          const symbols = {
+            USD: "$",
+            EUR: "€",
+            GBP: "£",
+            INR: "₹",
+            KES: "KSh",
+            NGN: "₦",
+            ZAR: "R",
+            CAD: "CA$",
+            AUD: "A$",
+            JPY: "¥",
+            CNY: "¥",
+            BRL: "R$",
+            MXN: "MX$",
+            AED: "د.إ",
+            SAR: "﷼",
+            TRY: "₺",
+            RUB: "₽",
+            KRW: "₩",
+            SGD: "S$",
+            HKD: "HK$",
+            SEK: "kr",
+            NOK: "kr",
+            DKK: "kr",
+            CHF: "CHF",
+            PLN: "zł",
+            THB: "฿",
+            IDR: "Rp",
+            MYR: "RM",
+            PHP: "₱",
+            VND: "₫",
+            EGP: "E£",
+            ILS: "₪",
+            CLP: "CLP$",
+            ARS: "ARS$",
+            COP: "COL$",
+            PEN: "S/",
+          };
+          setSymbol(symbols[currencyCode] || currencyCode);
+        }
+      } catch (err) {
+        // Silently fail and keep default KES values
       }
-
-      const rateRes = await fetch(
-        `https://api.exchangerate-api.com/v4/latest/KES`
-      );
-      const rateData = await rateRes.json();
-
-      const conversionRate = rateData?.rates?.[currencyCode];
-
-      if (conversionRate && conversionRate > 0) {
-        setCurrency(currencyCode);
-        setRate(conversionRate);
-
-        const symbols = {
-          USD: "$",
-          EUR: "€",
-          GBP: "£",
-          INR: "₹",
-          KES: "KSh",
-          NGN: "₦",
-          ZAR: "R",
-          CAD: "CA$",
-          AUD: "A$",
-          JPY: "¥",
-          CNY: "¥",
-          BRL: "R$",
-          MXN: "MX$",
-        };
-        setSymbol(symbols[currencyCode] || currencyCode);
-      }
-    } catch (err) {
-      // Silently fail and keep default KES values
     }
-  };
 
-  const handleCurrencyChange = (e) => {
-    const selectedCode = e.target.value;
-    const selected = CURRENCY_OPTIONS.find((c) => c.code === selectedCode);
-    
-    setIsManualSelection(true);
-    setCurrency(selectedCode);
-    setSymbol(selected.symbol);
-    
-    fetchRates(selectedCode);
-  };
+    fetchLocationAndRates();
+  }, []);
 
   const formatPrice = (price) => {
     const converted = price * rate;
@@ -141,20 +136,6 @@ function Services({ scrollToSection }) {
             Pricing
           </span>
         </h2>
-        
-        <div className="flex justify-center mt-4">
-          <select
-            value={currency}
-            onChange={handleCurrencyChange}
-            className="bg-slate-800/60 border border-purple-500/30 text-white px-4 py-2 rounded-lg text-sm focus:outline-none focus:border-purple-400 cursor-pointer hover:bg-slate-800/80 transition-all"
-          >
-            {CURRENCY_OPTIONS.map((curr) => (
-              <option key={curr.code} value={curr.code}>
-                {curr.symbol} {curr.name} ({curr.code})
-              </option>
-            ))}
-          </select>
-        </div>
       </div>
 
       <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-7xl mx-auto">
