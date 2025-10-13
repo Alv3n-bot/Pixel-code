@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Code, Megaphone, Users, Zap, ChevronDown, Upload, Briefcase, Clock, MapPin } from 'lucide-react';
+import { Code, Megaphone, Users, Zap, ChevronDown, Briefcase, Clock, MapPin } from 'lucide-react';
 
 const POSITIONS = [
   {
@@ -9,6 +9,7 @@ const POSITIONS = [
     type: "Part-time / Freelance",
     location: "Remote / Nairobi",
     icon: Code,
+    isOpen: false,
     description: "Craft responsive, high-performance websites using React, Tailwind CSS, and modern AI-driven web technologies.",
     requirements: [
       "2+ years experience with React and modern JavaScript",
@@ -31,6 +32,7 @@ const POSITIONS = [
     type: "Part-time",
     location: "Nairobi",
     icon: Code,
+    isOpen: false,
     description: "Design and build full-stack web applications with AI-powered functionality and seamless integrations.",
     requirements: [
       "3+ years full-stack development experience",
@@ -53,6 +55,7 @@ const POSITIONS = [
     type: "Part-time / Freelance",
     location: "Remote / Nairobi",
     icon: Zap,
+    isOpen: false,
     description: "Create intuitive, AI-enhanced user interfaces that drive engagement and improve user experience.",
     requirements: [
       "2+ years UI/UX design experience",
@@ -75,6 +78,7 @@ const POSITIONS = [
     type: "Part-time / Freelance",
     location: "Remote",
     icon: Code,
+    isOpen: false,
     description: "Develop custom WordPress themes and plugins with AI-enhanced functionality for client projects.",
     requirements: [
       "2+ years WordPress development experience",
@@ -97,10 +101,11 @@ const POSITIONS = [
     type: "part-time / Commission-based",
     location: "Nairobi",
     icon: Megaphone,
+    isOpen: true,
     description: "Drive business growth by connecting with clients and closing deals for AI-powered web solutions.",
     requirements: [
       "2+ years B2B sales experience (tech/digital preferred)",
-      "Knowledge of AI-driven web development services",
+      "Knowledge of Web/App development services",
       "Excellent communication and negotiation skills",
       "Self-motivated with proven track record"
     ],
@@ -118,6 +123,7 @@ const POSITIONS = [
     type: "Part-time",
     location: "Nairobi",
     icon: Users,
+    isOpen: false,
     description: "Expand our client base for AI-driven web solutions in the East African market.",
     requirements: [
       "3+ years business development experience",
@@ -132,9 +138,7 @@ const POSITIONS = [
       "Develop pricing strategies for AI-driven services",
       "Manage key client accounts and relationships"
     ]
-  },
-  
-
+  }
 ];
 
 function Careers() {
@@ -169,9 +173,12 @@ function Careers() {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitMessage("");
+
     try {
-      const scriptURL = "https://script.google.com/macros/s/AKfycbwlPbhDTQnWTc4w2rHOb0iVDYmETGPOK1o-4DlE5HHGdxwvaxzIBVsQkNb5-xwBqjaQ0w/exec";
+      const scriptURL = "https://script.google.com/macros/s/AKfycbzY_xY6Boqi0BtizW9slRv48Sg3-JxIJNuiaOIa6iVXxZJrcRpYKRj3mpQIe1soIueC/exec";
       const form = new FormData();
+
+      // Match Google Sheet headers exactly
       form.append("Name", formData.fullName);
       form.append("Email", formData.email);
       form.append("Number", formData.phone);
@@ -179,10 +186,12 @@ function Careers() {
       form.append("Experience", formData.experience);
       form.append("Portfolio", formData.portfolio);
       form.append("LinkedIn", formData.linkedin);
-      form.append("Message", formData.coverLetter);
+      form.append("Cover Letter", formData.coverLetter);
       form.append("Availability", formData.availability);
       form.append("Type", "Career Application");
+
       const response = await fetch(scriptURL, { method: "POST", body: form });
+
       if (response.ok) {
         setSubmitMessage("✅ Application submitted successfully! We'll review and get back to you soon.");
         setFormData({
@@ -212,6 +221,8 @@ function Careers() {
   };
 
   return (
+    
+  
     <div className="min-h-screen bg-gray-900 font-sans">
       {/* Hero Section */}
       <section className="relative py-24 sm:py-32 px-4 sm:px-6 md:px-8 bg-gradient-to-b from-gray-900 to-purple-900/20">
@@ -247,7 +258,7 @@ function Careers() {
             Open Positions
           </h2>
           <div className="grid gap-8">
-            {POSITIONS.map((position) => {
+            {POSITIONS.filter(position => position.isOpen).map((position) => {
               const Icon = position.icon;
               return (
                 <div

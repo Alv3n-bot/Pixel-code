@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, Mail, Phone, Instagram, Linkedin, Globe, Zap, Sparkles, Rocket } from 'lucide-react';
+import { Menu, X, Mail, Phone, MessageCircle, Instagram, Linkedin, Globe, Zap, Sparkles, Rocket } from 'lucide-react';
 
 function About() {
   return (
@@ -59,18 +59,43 @@ function About() {
       
   
   <div className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3 flex-wrap sm:flex-nowrap">
+  <a
+    href="tel:+254771647363"
+    className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3"
+  >
     <Phone className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 text-purple-400 flex-shrink-0" />
-    <span className="text-[11px] sm:text-[12px] md:text-[14px] lg:text-[16px] whitespace-nowrap">
-      +254 794 994 316
+    <span className="text-[9px] sm:text-[12px] md:text-[14px] lg:text-[16px] whitespace-nowrap">
+      +254 771 647 363
     </span>
-  </div>
+  </a>
+</div>
 
-  <div className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3 flex-wrap sm:flex-nowrap">
-    <Mail className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 text-purple-400 flex-shrink-0" />
-    <span className="text-[11px] sm:text-[12px] md:text-[14px] lg:text-[16px] whitespace-nowrap overflow-hidden text-ellipsis">
-      alvinkamotho@gmail.com
+<div className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3 flex-wrap sm:flex-nowrap">
+  <a
+    href="https://wa.me/254771647363"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3"
+  >
+    <Phone className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 text-green-400 flex-shrink-0" />
+    <span className="text-[9px] sm:text-[12px] md:text-[14px] lg:text-[16px] whitespace-nowrap">
+      WhatsApp Us
     </span>
-  </div>
+  </a>
+</div>
+
+<div className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3 flex-wrap sm:flex-nowrap">
+  <a
+    href="mailto:pxcsoftwares@gmail.com"
+    className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3"
+  >
+    <Mail className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 text-purple-400 flex-shrink-0" />
+    <span className="text-[9px] sm:text-[12px] md:text-[14px] lg:text-[16px] whitespace-nowrap overflow-hidden text-ellipsis">
+      pxcsoftwares@gmail.com
+    </span>
+  </a>
+</div>
+
 
   <div className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3">
     <Globe className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 text-purple-400 flex-shrink-0" />
