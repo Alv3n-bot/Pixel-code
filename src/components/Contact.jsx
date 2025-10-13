@@ -197,15 +197,15 @@ function Contact() {
               <ul className="space-y-1.5 sm:space-y-2 md:space-y-3 lg:space-y-4 text-slate-300 text-[9px] sm:text-[10px] md:text-sm">
                 <li className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
                   <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 md:w-2 md:h-2 rounded-full bg-purple-400 mt-1 flex-shrink-0"></div>
-                  <span className="leading-tight">Starter: 1–2 weeks • KSh 25,000+</span>
+                  <span className="leading-tight">Starter: 1–2 weeks</span>
                 </li>
                 <li className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
                   <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 md:w-2 md:h-2 rounded-full bg-pink-400 mt-1 flex-shrink-0"></div>
-                  <span className="leading-tight">Growth: 3–6 weeks • KSh 80,000+</span>
+                  <span className="leading-tight">Growth: 1–2 weeks </span>
                 </li>
                 <li className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
                   <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 md:w-2 md:h-2 rounded-full bg-orange-400 mt-1 flex-shrink-0"></div>
-                  <span className="leading-tight">Enterprise: 6+ weeks • Custom pricing</span>
+                  <span className="leading-tight">Enterprise: 2+ weeks </span>
                 </li>
               </ul>
             </div>
