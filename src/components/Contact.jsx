@@ -193,7 +193,7 @@ function Contact() {
           <div className="grid grid-cols-3 md:grid-cols-1 gap-3 sm:gap-4 md:gap-5 lg:gap-6 md:contents">
             <div className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8">
               <h3 className="font-black text-xs sm:text-sm md:text-xl lg:text-2xl text-white mb-2 sm:mb-3 md:mb-5 lg:mb-6">Quick Quote</h3>
-              <p className="text-[9px] sm:text-[10px] md:text-sm text-slate-400 mb-2 sm:mb-3 md:mb-5 lg:mb-6 leading-tight">Typical timelines & starting prices:</p>
+              <p className="text-[9px] sm:text-[10px] md:text-sm text-slate-400 mb-2 sm:mb-3 md:mb-5 lg:mb-6 leading-tight">Typical timelines</p>
               <ul className="space-y-1.5 sm:space-y-2 md:space-y-3 lg:space-y-4 text-slate-300 text-[9px] sm:text-[10px] md:text-sm">
                 <li className="flex items-start gap-1.5 sm:gap-2 md:gap-3">
                   <div className="w-1 h-1 sm:w-1.5 sm:h-1.5 md:w-2 md:h-2 rounded-full bg-purple-400 mt-1 flex-shrink-0"></div>
@@ -213,7 +213,7 @@ function Contact() {
             <div className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8">
               <h3 className="font-black text-xs sm:text-sm md:text-lg lg:text-xl text-white mb-1.5 sm:mb-2 md:mb-4">Payment</h3>
               <p className="text-[9px] sm:text-[10px] md:text-sm text-slate-300 leading-tight">
-                Bank transfer, MPesa, or Stripe for card payments.
+                Bank transfer, MPesa, or Paystack for card payments.
               </p>
             </div>
 
