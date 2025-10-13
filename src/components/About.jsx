@@ -65,14 +65,14 @@ function About() {
   >
     <Phone className="w-5 h-5 sm:w-5 sm:h-5 md:w-5 md:h-5 lg:w-5 lg:h-5 text-purple-400 flex-shrink-0" />
     <span className="text-[9px] sm:text-[12px] md:text-[14px] lg:text-[16px] whitespace-nowrap">
-      +254 771 647 363
+      +254 794 994 316
     </span>
   </a>
 </div>
 
 <div className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3 flex-wrap sm:flex-nowrap">
   <a
-    href="https://wa.me/254771647363"
+    href="https://wa.me/254794994316"
     target="_blank"
     rel="noopener noreferrer"
     className="flex items-center gap-2 sm:gap-2.5 md:gap-2.5 lg:gap-3"
