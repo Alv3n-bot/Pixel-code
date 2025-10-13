@@ -1,22 +1,232 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Pixel & Code — professional web development for Kenyan businesses. Modern websites, e-commerce, and maintenance with affordable local pricing tiers." />
-    <meta name="theme-color" content="#0ea5a3" />
-    <title>Pixel & Code — Kenyan Freelance Web Development</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/css/intlTelInput.css"/>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.19/js/intlTelInput.min.js"></script>
-  <style>
+<head>
+  <!-- Primary Setup -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
 
-    
-  </style>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+  <!-- Primary Meta Tags -->
+  <title>Affordable Web Design & Development in Kenya | PXC Softwares</title>
+  <meta name="title" content="Affordable Web Design & Development in Kenya | PXC Softwares" />
+  <meta name="description" content="Professional and affordable web design in Kenya. Get a fast, SEO-ready, and mobile-friendly website from just KSh 18,000. Trusted by startups and small businesses in Nairobi and beyond." />
+  <meta name="keywords" content="web design Kenya, web development Nairobi, affordable websites Kenya, web developer Kenya, small business websites, React developer Kenya, SEO Kenya, cheap web design, web app development, e-commerce websites Kenya" />
+  <meta name="author" content="PXC Softwares - Pixel & Code" />
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large" />
+  <meta name="language" content="English" />
+  <meta name="distribution" content="global" />
+  <meta name="rating" content="general" />
+
+  <!-- Canonical & Mobile -->
+  <link rel="canonical" href="https://pxcsoftwares.site/" />
+  <link rel="alternate" media="only screen and (max-width: 640px)" href="https://pxcsoftwares.site/" />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://pxcsoftwares.site/" />
+  <meta property="og:title" content="Affordable Web Design & Development in Kenya | PXC Softwares" />
+  <meta property="og:description" content="Get a stunning, affordable website for your business. Professional web development in Nairobi from KSh 18,000. Responsive, fast, and SEO-optimized." />
+  <meta property="og:image" content="https://pxcsoftwares.site/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="PXC Softwares - Pixel & Code" />
+  <meta property="og:locale" content="en_KE" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@pxcsoftwares" />
+  <meta name="twitter:creator" content="@pxcsoftwares" />
+  <meta name="twitter:title" content="Affordable Web Design in Kenya | PXC Softwares" />
+  <meta name="twitter:description" content="Professional web design from KSh 18,000. Affordable, fast, and reliable web solutions for businesses in Kenya." />
+  <meta name="twitter:image" content="https://pxcsoftwares.site/twitter-image.jpg" />
+
+  <!-- Theme & PWA -->
+  <meta name="theme-color" content="#a855f7" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+
+  <!-- Geo -->
+  <meta name="geo.region" content="KE-110" />
+  <meta name="geo.placename" content="Nairobi, Kenya" />
+  <meta name="geo.position" content="-1.286389;36.817223" />
+  <meta name="ICBM" content="-1.286389, 36.817223" />
+
+  <!-- Preload & Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- =========================
+       ✅ STRUCTURED DATA
+  ========================== -->
+
+  <!-- Organization -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "PXC Softwares",
+    "legalName": "Pixel & Code Softwares",
+    "url": "https://pxcsoftwares.site",
+    "logo": "https://pxcsoftwares.site/logo.png",
+    "foundingDate": "2024",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nairobi",
+      "addressRegion": "Nairobi County",
+      "postalCode": "00100",
+      "addressCountry": "KE"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+254712345678",
+      "contactType": "Customer Service",
+      "areaServed": "KE",
+      "availableLanguage": ["English", "Swahili"]
+    },
+    "sameAs": [
+      "https://www.facebook.com/pxcsoftwares",
+      "https://www.instagram.com/pxcsoftwares",
+      "https://www.linkedin.com/company/pxcsoftwares"
+    ]
+  }
+  </script>
+
+  <!-- Local Business -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "PXC Softwares - Pixel & Code",
+    "image": "https://pxcsoftwares.site/logo.png",
+    "description": "Affordable web design and development services in Kenya. We create professional, SEO-optimized websites for startups and businesses.",
+    "priceRange": "KSh 18,000 - KSh 60,000+",
+    "url": "https://pxcsoftwares.site",
+    "telephone": "+254712345678",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Nairobi",
+      "addressRegion": "Nairobi County",
+      "postalCode": "00100",
+      "addressCountry": "KE"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": -1.286389,
+      "longitude": 36.817223
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "27"
+    },
+    "openingHours": "Mo-Fr 09:00-18:00",
+    "currenciesAccepted": "KES, USD",
+    "paymentAccepted": "M-Pesa, Card, Bank Transfer",
+    "areaServed": {
+      "@type": "Country",
+      "name": "Kenya"
+    }
+  }
+  </script>
+
+  <!-- Services -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Web Design & Development",
+    "provider": {
+      "@type": "ProfessionalService",
+      "name": "PXC Softwares"
+    },
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Website Packages",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Starter Website",
+            "description": "Responsive 5-page website, contact form, and basic SEO setup."
+          },
+          "price": "18000",
+          "priceCurrency": "KES",
+          "url": "https://pxcsoftwares.site/#services"
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Growth Package",
+            "description": "Custom design, SEO, and e-commerce functionality for growing brands."
+          },
+          "price": "30000",
+          "priceCurrency": "KES",
+          "url": "https://pxcsoftwares.site/#services"
+        }
+      ]
+    }
+  }
+  </script>
+
+  <!-- FAQ -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How much does a website cost in Kenya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Our website packages start at KSh 18,000 for a professional 5-page site, with higher-tier options for custom designs and e-commerce."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long will it take to build my website?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Basic websites are completed in 1–2 weeks, while advanced projects may take 3–6 weeks depending on complexity."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you serve clients outside Kenya?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We work with global clients and adjust pricing automatically to your local currency."
+        }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Breadcrumbs -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://pxcsoftwares.site/" },
+      { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://pxcsoftwares.site/#services" },
+      { "@type": "ListItem", "position": 3, "name": "Contact", "item": "https://pxcsoftwares.site/#contact" }
+    ]
+  }
+  </script>
+
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
 </html>
