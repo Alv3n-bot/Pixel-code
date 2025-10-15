@@ -11,6 +11,8 @@ import Restaurant from './pages/Restaurant/Restaurant';
 import LawFirm from './pages/LawFirm/LawFirm';
 import Fitness from './pages/fitness/Fitness';
 import Careers from './pages/careers/careers';
+import SalesDashboard from './pages/introToSales/Sales';
+
 //components
 import Contact from './components/Contact';
 import Header from './components/Header';
@@ -65,7 +67,8 @@ function App() {
         <Route path="/law-firm" element={<LawFirm />} />
         <Route path="/fitness-app" element={<Fitness />} />
         <Route path="/careers" element={<Careers />} />
-      </Routes>
+        <Route path="/sales" element={<SalesDashboard />} />
+              </Routes>
     </Router>
   );
 }

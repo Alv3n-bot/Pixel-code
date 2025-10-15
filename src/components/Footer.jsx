@@ -44,7 +44,7 @@ function Footer() {
               className="flex items-center gap-2 hover:text-purple-400 transition-colors break-all"
             >
               <Mail className="w-4 h-4 text-purple-400 flex-shrink-0" />
-              <span>alvinkamotho@gmail.com</span>
+              <span>pxcsoftwares@gmail.com</span>
             </a>
             <div className="flex items-center gap-2">
               <Phone className="w-4 h-4 text-purple-400 flex-shrink-0" />
