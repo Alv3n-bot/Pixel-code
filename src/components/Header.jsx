@@ -1,9 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 
 function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const headerRef = useRef(null);
+  const timeoutRef = useRef(null);
 
   const navLinks = [
     { label: "Services", id: "#services" },
@@ -15,12 +17,14 @@ function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
+      
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
 
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        // Scrolling down and past 50px
+      if (currentScrollY > lastScrollY + 10 && currentScrollY > 100) {
         setIsVisible(false);
-      } else if (currentScrollY < lastScrollY || currentScrollY <= 50) {
-        // Scrolling up or near the top
+      } else if (currentScrollY < lastScrollY - 10 || currentScrollY <= 100) {
         setIsVisible(true);
       }
 
@@ -28,14 +32,36 @@ function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
+    };
   }, [lastScrollY]);
+
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      setIsVisible(true);
+    }
+  }, [mobileMenuOpen]);
 
   return (
     <>
+      {/* Spacer div to prevent content overlap */}
+      <div 
+        className={`transition-all duration-300 ${
+          isVisible ? 'pt-20' : 'pt-0'
+        }`}
+      />
+      
       <header
-        className={`sticky top-4 z-50 backdrop-blur-2xl bg-slate-950/80 border border-purple-500/20 rounded-2xl shadow-2xl shadow-purple-500/10 flex items-center justify-between px-8 py-4 transition-all duration-500 ease-in-out hover:border-purple-500/40 ${
-          isVisible ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+        ref={headerRef}
+        className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-2xl bg-slate-950/80 border border-purple-500/20 rounded-2xl shadow-2xl shadow-purple-500/10 flex items-center justify-between px-8 py-4 w-full max-w-6xl transition-all duration-300 ease-out ${
+          isVisible 
+            ? 'translate-y-0 opacity-100 visible' 
+            : '-translate-y-20 opacity-0 invisible'
         }`}
       >
         <a
@@ -47,11 +73,9 @@ function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
           }}
         >
           <div className="flex items-center gap-3">
-            {/* Logo Icon */}
             <div className="w-12 h-12 bg-gray-900 border-2 border-purple-500 rounded-md flex items-center justify-center text-purple-400 font-mono font-bold text-lg shadow-md shadow-purple-500/30 group-hover:border-purple-400 group-hover:shadow-purple-500/50 transition-all duration-200">
               P&C
             </div>
-            {/* Text Section */}
             <div className="flex flex-col">
               <div className="font-mono font-bold text-xl text-gray-100 tracking-wider uppercase">
                 Pixel & Code
@@ -99,7 +123,10 @@ function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
 
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="absolute inset-0 bg-slate-950/95 backdrop-blur-xl" onClick={() => setMobileMenuOpen(false)} />
+          <div 
+            className="absolute inset-0 bg-slate-950/95 backdrop-blur-xl" 
+            onClick={() => setMobileMenuOpen(false)} 
+          />
           <nav className="relative flex flex-col items-center justify-center h-full gap-8">
             {navLinks.map((link) => (
               <a
