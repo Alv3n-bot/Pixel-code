@@ -5,6 +5,7 @@ function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const headerRef = useRef(null);
+  const timeoutRef = useRef(null);
 
   const navLinks = [
     { label: "Services", id: "#services" },
@@ -14,30 +15,29 @@ function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
   ];
 
   useEffect(() => {
-    let ticking = false;
-    
     const handleScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(() => {
-          const currentScrollY = window.scrollY;
-          
-          if (currentScrollY > lastScrollY + 10 && currentScrollY > 100) {
-            setIsVisible(false);
-          } else if (currentScrollY < lastScrollY - 10 || currentScrollY <= 100) {
-            setIsVisible(true);
-          }
-          
-          setLastScrollY(currentScrollY);
-          ticking = false;
-        });
-        ticking = true;
+      const currentScrollY = window.scrollY;
+      
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
       }
+
+      if (currentScrollY > lastScrollY + 10 && currentScrollY > 100) {
+        setIsVisible(false);
+      } else if (currentScrollY < lastScrollY - 10 || currentScrollY <= 100) {
+        setIsVisible(true);
+      }
+
+      setLastScrollY(currentScrollY);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     
     return () => {
       window.removeEventListener('scroll', handleScroll);
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     };
   }, [lastScrollY]);
 
@@ -49,12 +49,19 @@ function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
 
   return (
     <>
+      {/* Spacer div to prevent content overlap */}
+      <div 
+        className={`transition-all duration-300 ${
+          isVisible ? 'pt-20' : 'pt-0'
+        }`}
+      />
+      
       <header
         ref={headerRef}
-        className={`fixed top-4 left-1/2 -translate-x-1/2 z-50 backdrop-blur-md bg-slate-950/80 border border-purple-500/20 rounded-2xl shadow-xl shadow-purple-500/20 flex items-center justify-between px-8 py-4 w-full max-w-6xl transition-all duration-300 ease-out will-change-transform transform-gpu ${
+        className={`fixed top-4 left-1/2 transform -translate-x-1/2 z-50 backdrop-blur-2xl bg-slate-950/80 border border-purple-500/20 rounded-2xl shadow-2xl shadow-purple-500/10 flex items-center justify-between px-8 py-4 w-full max-w-6xl transition-all duration-300 ease-out ${
           isVisible 
-            ? 'translate-y-0 opacity-100' 
-            : '-translate-y-20 opacity-0 pointer-events-none'
+            ? 'translate-y-0 opacity-100 visible' 
+            : '-translate-y-20 opacity-0 invisible'
         }`}
       >
         <a
@@ -96,7 +103,7 @@ function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
             </a>
           ))}
           <button
-            className="ml-4 bg-gray-900 border-2 border-purple-500 text-purple-400 font-mono font-semibold px-5 py-2.5 rounded-lg hover:bg-purple-500 hover:text-gray-900 hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/40 transition-all duration-200"
+            className="ml-4 bg-gray-900 border-2 border-purple-500 text-purple-400 font-mono font-semibold px-5 py-2.5 rounded-lg hover:bg-purple-500 hover:text-gray-900 hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/40 hover:scale-102 transition-all duration-200"
             onClick={(e) => {
               e.preventDefault();
               scrollToSection("#contact");
@@ -109,7 +116,6 @@ function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
         <button
           className="lg:hidden text-white p-2 rounded-xl hover:bg-white/10 transition-colors"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
         >
           {mobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
@@ -118,7 +124,7 @@ function Header({ mobileMenuOpen, setMobileMenuOpen, scrollToSection }) {
       {mobileMenuOpen && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div 
-            className="absolute inset-0 bg-slate-950/95 backdrop-blur-lg" 
+            className="absolute inset-0 bg-slate-950/95 backdrop-blur-xl" 
             onClick={() => setMobileMenuOpen(false)} 
           />
           <nav className="relative flex flex-col items-center justify-center h-full gap-8">
