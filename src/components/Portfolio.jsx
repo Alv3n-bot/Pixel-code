@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 
 const PORTFOLIO = [
@@ -67,24 +68,27 @@ function Portfolio({ scrollToSection }) {
             <Link
               key={project.id}
               to={project.route}
-              className="group relative backdrop-blur-2xl bg-slate-900/40 border border-purple-500/20 rounded-xl sm:rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-500/20"
+              className="group relative backdrop-blur-md bg-slate-900/40 border border-purple-500/20 rounded-xl sm:rounded-2xl overflow-hidden hover:border-purple-500/50 transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-500/20 transform-gpu will-change-transform"
             >
-              <img
-                src={project.image}
-                alt={`${project.title} project mockup`}
-                className="w-full h-24 sm:h-32 md:h-40 lg:h-48 object-cover transition-transform duration-300 group-hover:scale-105"
-                loading="lazy"
-              />
+              <div className="relative overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={`${project.title} project mockup`}
+                  className="w-full h-24 sm:h-32 md:h-40 lg:h-48 object-cover transition-transform duration-300 group-hover:scale-105 will-change-transform"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               {/* Hover overlay with buttons */}
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-2 sm:p-3 md:p-4 lg:p-6">
-                <div className="flex gap-2 sm:gap-3 md:gap-4">
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center p-2 sm:p-3 md:p-4 lg:p-6 pointer-events-none">
+                <div className="flex gap-2 sm:gap-3 md:gap-4 pointer-events-auto">
                   <button
                     onClick={(e) => {
                       e.preventDefault();
                       e.stopPropagation();
                       scrollToSection("#contact");
                     }}
-                    className="bg-white/20 backdrop-blur-xl border border-white/30 text-white font-bold px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 rounded-full hover:bg-white/30 transition-all text-center text-[10px] sm:text-xs md:text-sm"
+                    className="bg-white/20 backdrop-blur-md border border-white/30 text-white font-bold px-3 sm:px-4 md:px-5 lg:px-6 py-1.5 sm:py-2 rounded-full hover:bg-white/30 transition-all text-center text-[10px] sm:text-xs md:text-sm"
                   >
                     Request Similar
                   </button>
@@ -106,4 +110,4 @@ function Portfolio({ scrollToSection }) {
   );
 }
 
-export default Portfolio;
+export default memo(Portfolio);

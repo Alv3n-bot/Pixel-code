@@ -1,16 +1,16 @@
-import { useState } from 'react';
-import { Menu, X, Mail, Phone, Instagram, Linkedin, Globe, Zap, Sparkles, Rocket } from 'lucide-react';
+import { memo } from 'react';
+import { Zap, Sparkles, Rocket } from 'lucide-react';
 
 function Hero({ scrollToSection }) {
   return (
     <section className="relative min-h-[85vh] flex items-center overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-purple-950 to-slate-950 px-4 py-16 sm:px-8 sm:py-20">
-      {/* Animated background elements - reduced pulse for subtlety */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-600/30 rounded-full blur-[120px]"></div>
-      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-600/20 rounded-full blur-[150px]"></div>
-      <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-orange-500/20 rounded-full blur-[100px]"></div>
+      {/* Animated background elements - optimized for mobile */}
+      <div className="absolute top-0 left-0 w-96 h-96 bg-purple-600/30 rounded-full blur-[120px] will-change-transform"></div>
+      <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-pink-600/20 rounded-full blur-[150px] will-change-transform"></div>
+      <div className="absolute top-1/2 left-1/2 w-80 h-80 bg-orange-500/20 rounded-full blur-[100px] will-change-transform"></div>
 
       <div className="relative z-10 max-w-4xl">
-        <div className="inline-flex items-center gap-2 bg-purple-500/20 backdrop-blur-xl border border-purple-500/30 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full mb-6 sm:mb-8 group hover:bg-purple-500/30 transition-all">
+        <div className="inline-flex items-center gap-2 bg-purple-500/20 backdrop-blur-md border border-purple-500/30 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full mb-6 sm:mb-8 group hover:bg-purple-500/30 transition-all transform-gpu">
           <Sparkles size={16} className="text-purple-400" />
           <span className="font-bold text-xs sm:text-sm text-purple-200">Local • Reliable • Professional</span>
         </div>
@@ -32,7 +32,7 @@ function Hero({ scrollToSection }) {
               e.preventDefault();
               scrollToSection("#contact");
             }}
-            className="group relative bg-gray-900 border-2 border-purple-500 text-purple-400 font-mono font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg overflow-hidden shadow-md shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-200 flex items-center gap-2"
+            className="group relative bg-gray-900 border-2 border-purple-500 text-purple-400 font-mono font-semibold px-4 py-2 sm:px-6 sm:py-3 rounded-lg overflow-hidden shadow-md shadow-purple-500/30 hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-200 flex items-center gap-2 transform-gpu will-change-transform"
           >
             {/* Animated Background Effect */}
             <span className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></span>
@@ -55,7 +55,7 @@ function Hero({ scrollToSection }) {
               e.preventDefault();
               scrollToSection("#portfolio");
             }}
-            className="backdrop-blur-xl bg-white/10 border-2 border-white/20 text-white font-bold px-6 py-3 sm:px-8 sm:py-4 rounded-xl hover:bg-white/20 hover:border-white/40 transition-all duration-300 text-sm sm:text-base"
+            className="backdrop-blur-md bg-white/10 border-2 border-white/20 text-white font-bold px-6 py-3 sm:px-8 sm:py-4 rounded-xl hover:bg-white/20 hover:border-white/40 transition-all duration-300 text-sm sm:text-base transform-gpu"
           >
             View Portfolio
           </button>
@@ -66,8 +66,8 @@ function Hero({ scrollToSection }) {
         </p>
       </div>
 
-      {/* Floating card */}
-      <div className="hidden xl:block absolute right-12 top-1/2 -translate-y-1/2 backdrop-blur-2xl bg-slate-900/50 border border-purple-500/30 rounded-3xl p-6 lg:p-8 shadow-2xl shadow-purple-500/20 max-w-xs hover:scale-105 transition-transform duration-500">
+      {/* Floating card - optimized */}
+      <div className="hidden xl:block absolute right-12 top-1/2 -translate-y-1/2 backdrop-blur-md bg-slate-900/50 border border-purple-500/30 rounded-3xl p-6 lg:p-8 shadow-xl shadow-purple-500/20 max-w-xs hover:scale-105 transition-transform duration-500 transform-gpu will-change-transform">
         <Zap size={24} className="text-purple-400 mb-3 lg:mb-4" />
         <h3 className="font-black text-xl lg:text-2xl text-white mb-2 lg:mb-3">
           Why Choose Us
@@ -89,4 +89,5 @@ function Hero({ scrollToSection }) {
     </section>
   );
 }
-export default Hero;
+
+export default memo(Hero);

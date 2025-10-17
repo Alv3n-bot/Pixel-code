@@ -1,18 +1,66 @@
 @import "tailwindcss";
 
-/* Fix horizontal scroll on mobile */
+/* Critical mobile optimizations */
 html, body {
   overflow-x: hidden;
   width: 100%;
   margin: 0;
   padding: 0;
+  background-color: #020617; /* slate-950 */
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: touch;
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 * {
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
+/* Smooth font rendering */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Force GPU acceleration for backdrop-blur elements */
+[class*="backdrop-blur"] {
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Optimize animations for mobile */
 @keyframes pulse-glow {
- 0%, 100% { box-shadow: 0 0 10px rgba(168, 85, 247, 0.1); }
- 50% { box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); }
+  0%, 100% { 
+    box-shadow: 0 0 10px rgba(168, 85, 247, 0.1); 
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(168, 85, 247, 0.3); 
+  }
+}
+
+/* Prevent layout shifts during scroll */
+#root {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Smooth scroll behavior */
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }

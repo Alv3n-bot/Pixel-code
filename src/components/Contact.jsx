@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, memo } from 'react';
 import { ChevronDown } from 'lucide-react';
 
 function Contact() {
@@ -78,18 +78,6 @@ function Contact() {
     }
   };
 
-  const handlePrefill = () => {
-    setFormData({
-      name: "Demo Client",
-      email: "demo@client.com",
-      phone: "+254700123456",
-      service: "Growth site (KSh 80,000+)",
-      message: "This is a demo brief for testing.",
-    });
-    setMessage("Prefilled demo values.");
-    setError("");
-  };
-
   return (
     <section id="contact" className="relative py-12 sm:py-16 md:py-20 lg:py-24 px-4 sm:px-6 md:px-8">
       <div className="absolute inset-0 bg-gradient-to-b from-purple-950/20 to-slate-950 rounded-2xl sm:rounded-3xl"></div>
@@ -106,7 +94,7 @@ function Contact() {
         <div className="grid grid-cols-1 md:grid-cols-[1.3fr_1fr] lg:grid-cols-[1fr_400px] gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-6xl mx-auto">
           <form
             onSubmit={handleSubmit}
-            className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 md:row-span-3"
+            className="backdrop-blur-md bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 lg:p-10 space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 md:row-span-3 transform-gpu"
           >
             {[
               { label: "Full name", name: "name", type: "text", placeholder: "Jane Mwangi", required: true },
@@ -172,16 +160,15 @@ function Contact() {
             </div>
 
             <button
-  type="submit"
-  disabled={isLoading}
-  className="relative w-full flex justify-center items-center group text-white font-bold text-[9px] sm:text-[10px] md:text-sm lg:text-base py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-md md:rounded-lg lg:rounded-xl bg-slate-800/40 border border-purple-500/20 hover:border-purple-400 transition-all duration-300"
->
-  <span className="relative z-10 group-hover:text-purple-300 transition-all duration-300">
-    {isLoading ? "Sending..." : "Send Request"}
-  </span>
-  <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-pink-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md md:rounded-lg lg:rounded-xl"></div>
-</button>
-
+              type="submit"
+              disabled={isLoading}
+              className="relative w-full flex justify-center items-center group text-white font-bold text-[9px] sm:text-[10px] md:text-sm lg:text-base py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-md md:rounded-lg lg:rounded-xl bg-slate-800/40 border border-purple-500/20 hover:border-purple-400 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span className="relative z-10 group-hover:text-purple-300 transition-all duration-300">
+                {isLoading ? "Sending..." : "Send Request"}
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-pink-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md md:rounded-lg lg:rounded-xl"></div>
+            </button>
 
             {message && (
               <div className="bg-purple-500/20 border border-purple-500/30 text-purple-200 p-3 sm:p-3.5 md:p-4 rounded-lg sm:rounded-xl text-[10px] sm:text-xs md:text-sm">
@@ -191,7 +178,7 @@ function Contact() {
           </form>
 
           <div className="grid grid-cols-3 md:grid-cols-1 gap-3 sm:gap-4 md:gap-5 lg:gap-6 md:contents">
-            <div className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8">
+            <div className="backdrop-blur-md bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 transform-gpu">
               <h3 className="font-black text-xs sm:text-sm md:text-xl lg:text-2xl text-white mb-2 sm:mb-3 md:mb-5 lg:mb-6">Quick Quote</h3>
               <p className="text-[9px] sm:text-[10px] md:text-sm text-slate-400 mb-2 sm:mb-3 md:mb-5 lg:mb-6 leading-tight">Typical timelines</p>
               <ul className="space-y-1.5 sm:space-y-2 md:space-y-3 lg:space-y-4 text-slate-300 text-[9px] sm:text-[10px] md:text-sm">
@@ -210,14 +197,14 @@ function Contact() {
               </ul>
             </div>
 
-            <div className="backdrop-blur-2xl bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8">
+            <div className="backdrop-blur-md bg-slate-900/50 border border-purple-500/20 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 transform-gpu">
               <h3 className="font-black text-xs sm:text-sm md:text-lg lg:text-xl text-white mb-1.5 sm:mb-2 md:mb-4">Payment</h3>
               <p className="text-[9px] sm:text-[10px] md:text-sm text-slate-300 leading-tight">
                 Bank transfer, MPesa, or Paystack for card payments.
               </p>
             </div>
 
-            <div className="backdrop-blur-2xl bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8">
+            <div className="backdrop-blur-md bg-gradient-to-br from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-2xl sm:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 transform-gpu">
               <h3 className="font-black text-xs sm:text-sm md:text-lg lg:text-xl text-white mb-1.5 sm:mb-2 md:mb-4">Availability</h3>
               <p className="text-[9px] sm:text-[10px] md:text-sm text-slate-200 leading-tight">
                 Current lead time: <span className="font-bold">2 weeks</span> for new projects.
@@ -230,4 +217,4 @@ function Contact() {
   );
 }
 
-export default Contact;
+export default memo(Contact);
