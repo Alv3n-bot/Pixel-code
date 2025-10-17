@@ -13,7 +13,6 @@ const SERVICES = [
       "Basic SEO",
     ],
     description: "Launch-ready in 1-2 weeks",
-    cta: "Get Started",
   },
   {
     id: 2,
@@ -27,7 +26,6 @@ const SERVICES = [
       "Performance optimized",
     ],
     description: "Delivered in 3-6 weeks",
-    cta: "Get Started",
   },
   {
     id: 3,
@@ -41,7 +39,6 @@ const SERVICES = [
       "Ongoing support",
     ],
     description: "Timeline varies by scope",
-    cta: "Get Started",
   },
 ];
 
@@ -57,11 +54,8 @@ function Services({ scrollToSection }) {
         const locData = await locRes.json();
         const currencyCode = locData.currency || "KES";
 
-        const rateRes = await fetch(
-          `https://api.exchangerate-api.com/v4/latest/KES`
-        );
+        const rateRes = await fetch(`https://api.exchangerate-api.com/v4/latest/KES`);
         const rateData = await rateRes.json();
-
         const conversionRate = rateData?.rates?.[currencyCode];
 
         if (conversionRate && conversionRate > 0) {
@@ -69,47 +63,18 @@ function Services({ scrollToSection }) {
           setRate(conversionRate);
 
           const symbols = {
-            USD: "$",
-            EUR: "€",
-            GBP: "£",
-            INR: "₹",
-            KES: "KSh",
-            NGN: "₦",
-            ZAR: "R",
-            CAD: "CA$",
-            AUD: "A$",
-            JPY: "¥",
-            CNY: "¥",
-            BRL: "R$",
-            MXN: "MX$",
-            AED: "د.إ",
-            SAR: "﷼",
-            TRY: "₺",
-            RUB: "₽",
-            KRW: "₩",
-            SGD: "S$",
-            HKD: "HK$",
-            SEK: "kr",
-            NOK: "kr",
-            DKK: "kr",
-            CHF: "CHF",
-            PLN: "zł",
-            THB: "฿",
-            IDR: "Rp",
-            MYR: "RM",
-            PHP: "₱",
-            VND: "₫",
-            EGP: "E£",
-            ILS: "₪",
-            CLP: "CLP$",
-            ARS: "ARS$",
-            COP: "COL$",
+            USD: "$", EUR: "€", GBP: "£", INR: "₹", KES: "KSh",
+            NGN: "₦", ZAR: "R", CAD: "CA$", AUD: "A$", JPY: "¥", CNY: "¥",
+            BRL: "R$", MXN: "MX$", AED: "د.إ", SAR: "﷼", TRY: "₺", RUB: "₽",
+            KRW: "₩", SGD: "S$", HKD: "HK$", SEK: "kr", NOK: "kr", DKK: "kr",
+            CHF: "CHF", PLN: "zł", THB: "฿", IDR: "Rp", MYR: "RM", PHP: "₱",
+            VND: "₫", EGP: "E£", ILS: "₪", CLP: "CLP$", ARS: "ARS$", COP: "COL$",
             PEN: "S/",
           };
           setSymbol(symbols[currencyCode] || currencyCode);
         }
-      } catch (err) {
-        // Silently fail and keep default KES values
+      } catch {
+        // fallback silently
       }
     }
 
@@ -119,6 +84,50 @@ function Services({ scrollToSection }) {
   const formatPrice = (price) => {
     const converted = price * rate;
     return `${symbol} ${Math.round(converted).toLocaleString()}+`;
+  };
+
+  const handlePayment = (service) => {
+    const handler = PaystackPop.setup({
+      key: import.meta.env.VITE_PAYSTACK_PUBLIC_KEY,
+      email: "client@example.com",
+      amount: service.price * 100,
+      currency: currency || "KES",
+      ref: "pxc_" + new Date().getTime(),
+      metadata: {
+        custom_fields: [
+          {
+            display_name: "Service",
+            variable_name: "service_name",
+            value: service.title,
+          },
+        ],
+      },
+      callback: async function (response) {
+        try {
+          const res = await fetch("/api/verifyPayment", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ reference: response.reference }),
+          });
+          const data = await res.json();
+
+          if (data.success) {
+            window.location.href = `/confirmation?service=${encodeURIComponent(
+              service.title
+            )}&ref=${response.reference}`;
+          } else {
+            alert("Payment verification failed. Please contact support.");
+          }
+        } catch {
+          alert("Error verifying payment. Try again later.");
+        }
+      },
+      onClose: function () {
+        alert("Payment cancelled.");
+      },
+    });
+
+    handler.openIframe();
   };
 
   return (
@@ -179,18 +188,35 @@ function Services({ scrollToSection }) {
                 {service.description}
               </p>
 
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  scrollToSection("#contact");
-                }}
-                className="relative w-full flex justify-center items-center group text-white font-bold text-[9px] sm:text-[10px] md:text-sm lg:text-base py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-md md:rounded-lg lg:rounded-xl bg-slate-800/40 border border-purple-500/20 hover:border-purple-400 transition-all duration-300"
-              >
-                <span className="relative z-10 group-hover:text-purple-300 transition-all duration-300">
-                  {service.cta}
-                </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-pink-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md md:rounded-lg lg:rounded-xl"></div>
-              </button>
+              <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-3">
+                {/* Book Now Button */}
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePayment(service);
+                  }}
+                  className="relative w-full flex justify-center items-center group text-white font-bold text-[9px] sm:text-[10px] md:text-sm lg:text-base py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-md md:rounded-lg lg:rounded-xl bg-slate-800/40 border border-purple-500/20 hover:border-purple-400 transition-all duration-300"
+                >
+                  <span className="relative z-10 group-hover:text-purple-300 transition-all duration-300">
+                    Book Now
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-pink-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md md:rounded-lg lg:rounded-xl"></div>
+                </button>
+
+                {/* Free Consultation Button */}
+                <button
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection("#contact");
+                  }}
+                  className="relative w-full flex justify-center items-center group text-white font-bold text-[9px] sm:text-[10px] md:text-sm lg:text-base py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-md md:rounded-lg lg:rounded-xl bg-slate-800/40 border border-purple-500/20 hover:border-purple-400 transition-all duration-300"
+                >
+                  <span className="relative z-10 group-hover:text-purple-300 transition-all duration-300">
+                    Free Consultation
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-pink-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md md:rounded-lg lg:rounded-xl"></div>
+                </button>
+              </div>
             </div>
           </div>
         ))}

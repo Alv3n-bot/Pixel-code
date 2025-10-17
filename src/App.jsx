@@ -12,6 +12,7 @@ import LawFirm from './pages/LawFirm/LawFirm';
 import Fitness from './pages/fitness/Fitness';
 import Careers from './pages/careers/careers';
 import SalesDashboard from './pages/introToSales/Sales';
+import Confirmation from "./pages/Confirmation";
 
 //components
 import Contact from './components/Contact';
@@ -21,6 +22,8 @@ import Services from './components/Services';
 import Portfolio from './components/Portfolio';
 import Hero from './components/Hero';
 import About from './components/About';
+
+
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -68,6 +71,7 @@ function App() {
         <Route path="/fitness-app" element={<Fitness />} />
         <Route path="/careers" element={<Careers />} />
         <Route path="/sales" element={<SalesDashboard />} />
+        <Route path="/confirmation" element={<Confirmation />} />
               </Routes>
     </Router>
   );
