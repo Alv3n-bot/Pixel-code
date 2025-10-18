@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
+import { CheckCircle } from "lucide-react";
 
 const SERVICES = [
   {
     id: 1,
-    title: "Starter Website",
+    title: "Starter",
     subtitle: "Perfect for new businesses",
     price: 18000,
     features: [
@@ -16,7 +17,7 @@ const SERVICES = [
   },
   {
     id: 2,
-    title: "Growth Site",
+    title: "Growth",
     subtitle: "For established brands",
     price: 30000,
     features: [
@@ -47,7 +48,10 @@ function Services({ scrollToSection }) {
   const [symbol, setSymbol] = useState("KSh");
   const [rate, setRate] = useState(1);
   const [showModal, setShowModal] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
   const [selectedService, setSelectedService] = useState(null);
+  const [paymentOption, setPaymentOption] = useState("full");
+  const [successData, setSuccessData] = useState(null);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -60,15 +64,12 @@ function Services({ scrollToSection }) {
         const locRes = await fetch("https://ipapi.co/json/");
         const locData = await locRes.json();
         const currencyCode = locData.currency || "KES";
-
         const rateRes = await fetch(`https://api.exchangerate-api.com/v4/latest/KES`);
         const rateData = await rateRes.json();
         const conversionRate = rateData?.rates?.[currencyCode];
-
         if (conversionRate && conversionRate > 0) {
           setCurrency(currencyCode);
           setRate(conversionRate);
-
           const symbols = {
             USD: "$", EUR: "€", GBP: "£", INR: "₹", KES: "KSh",
             NGN: "₦", ZAR: "R", CAD: "CA$", AUD: "A$", JPY: "¥", CNY: "¥",
@@ -84,44 +85,39 @@ function Services({ scrollToSection }) {
         // fallback silently
       }
     }
-
     fetchLocationAndRates();
   }, []);
 
   const formatPrice = (price) => {
     const converted = price * rate;
-    return `${symbol} ${Math.round(converted).toLocaleString()}+`;
+    return `${symbol} ${Math.round(converted).toLocaleString()}`;
   };
 
   const handlePayment = (service) => {
     setSelectedService(service);
+    setPaymentOption("full");
     setShowModal(true);
   };
 
   const handleSubmitPayment = (e) => {
     e.preventDefault();
-
-    // Validate form
     if (!formData.name || !formData.email || !formData.phone) {
       alert('Please fill in all fields');
       return;
     }
-
     if (!formData.email.includes('@')) {
       alert('Please enter a valid email address');
       return;
     }
-
-    // Check if PaystackPop is loaded
     if (typeof window.PaystackPop === 'undefined') {
       alert('Payment system is loading. Please try again in a moment.');
       return;
     }
-
+    const amount = paymentOption === "deposit" ? selectedService.price * 0.5 : selectedService.price;
     const handler = window.PaystackPop.setup({
       key: 'pk_test_9963a1ff8d3156706b837c804839760bfb0289d2',
       email: formData.email,
-      amount: selectedService.price * 100,
+      amount: amount * 100,
       currency: currency || "KES",
       ref: "pxc_" + new Date().getTime(),
       metadata: {
@@ -141,24 +137,38 @@ function Services({ scrollToSection }) {
             variable_name: "phone_number",
             value: formData.phone,
           },
+          {
+            display_name: "Payment Type",
+            variable_name: "payment_type",
+            value: paymentOption === "deposit" ? "50% Deposit" : "Full Payment",
+          },
         ],
       },
       callback: function (response) {
         setShowModal(false);
-        setFormData({ name: '', email: '', phone: '' });
-        alert(`Payment successful! Reference: ${response.reference}\n\nWe'll contact you at ${formData.email} to start your project.`);
+        setSuccessData({
+          reference: response.reference,
+          email: formData.email
+        });
+        setShowSuccess(true);
         console.log('Payment successful:', response);
       },
       onClose: function () {
         console.log('Payment popup closed');
       },
     });
-
     handler.openIframe();
   };
 
   const closeModal = () => {
     setShowModal(false);
+    setFormData({ name: '', email: '', phone: '' });
+    setPaymentOption("full");
+  };
+
+  const closeSuccess = () => {
+    setShowSuccess(false);
+    setSuccessData(null);
     setFormData({ name: '', email: '', phone: '' });
   };
 
@@ -170,7 +180,6 @@ function Services({ scrollToSection }) {
       >
         <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-purple-950/30 to-slate-950 rounded-2xl sm:rounded-3xl"></div>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 blur-[120px] rounded-full"></div>
-
         <div className="relative z-10 text-center max-w-4xl mx-auto mb-8 sm:mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white mb-3 sm:mb-4 md:mb-6">
             Services &{" "}
@@ -179,7 +188,6 @@ function Services({ scrollToSection }) {
             </span>
           </h2>
         </div>
-
         <div className="relative z-10 grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8 max-w-7xl mx-auto">
           {SERVICES.map((service, idx) => (
             <div
@@ -202,7 +210,6 @@ function Services({ scrollToSection }) {
                     {formatPrice(service.price)}
                   </div>
                 </div>
-
                 <ul className="space-y-1 sm:space-y-1.5 md:space-y-2 lg:space-y-3 mb-2 sm:mb-3 md:mb-4 lg:mb-6">
                   {service.features.map((feature, idx) => (
                     <li
@@ -216,13 +223,10 @@ function Services({ scrollToSection }) {
                     </li>
                   ))}
                 </ul>
-
                 <p className="text-[7px] sm:text-[8px] md:text-[10px] lg:text-xs text-slate-400 mb-2 sm:mb-3 md:mb-4 lg:mb-6 pb-2 sm:pb-3 md:pb-4 lg:pb-6 border-b border-slate-700/50 leading-tight">
                   {service.description}
                 </p>
-
                 <div className="flex flex-col gap-1.5 sm:gap-2 md:gap-3">
-                  {/* Book Now Button */}
                   <button
                     onClick={(e) => {
                       e.preventDefault();
@@ -231,12 +235,10 @@ function Services({ scrollToSection }) {
                     className="relative w-full flex justify-center items-center group text-white font-bold text-[9px] sm:text-[10px] md:text-sm lg:text-base py-1.5 sm:py-2 md:py-2.5 lg:py-3 rounded-md md:rounded-lg lg:rounded-xl bg-slate-800/40 border border-purple-500/20 hover:border-purple-400 transition-all duration-300"
                   >
                     <span className="relative z-10 group-hover:text-purple-300 transition-all duration-300">
-                      Book Now
+                      Get Started
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-purple-600/30 to-pink-600/30 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-md md:rounded-lg lg:rounded-xl"></div>
                   </button>
-
-                  {/* Free Consultation Button */}
                   <button
                     onClick={(e) => {
                       e.preventDefault();
@@ -260,7 +262,6 @@ function Services({ scrollToSection }) {
       {showModal && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
           <div className="relative w-full max-w-md bg-slate-900 border border-purple-500/30 rounded-2xl p-6 md:p-8 shadow-2xl shadow-purple-500/20">
-            {/* Close Button */}
             <button
               onClick={closeModal}
               className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
@@ -269,8 +270,6 @@ function Services({ scrollToSection }) {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
-
-            {/* Header */}
             <div className="mb-6">
               <h3 className="text-2xl font-black text-white mb-2">
                 Book {selectedService?.title}
@@ -279,11 +278,9 @@ function Services({ scrollToSection }) {
                 Enter your details to proceed with payment
               </p>
               <div className="mt-3 text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
-                {formatPrice(selectedService?.price)}
+                {formatPrice(paymentOption === "deposit" ? selectedService?.price * 0.5 : selectedService?.price)}
               </div>
             </div>
-
-            {/* Form */}
             <form onSubmit={handleSubmitPayment} className="space-y-4">
               <div>
                 <label htmlFor="name" className="block text-sm font-semibold text-slate-300 mb-2">
@@ -295,11 +292,10 @@ function Services({ scrollToSection }) {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   className="w-full px-4 py-3 bg-slate-800/50 border border-purple-500/20 rounded-lg text-white placeholder-slate-500 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all"
-                  placeholder="John Doe"
+                  placeholder="Name"
                   required
                 />
               </div>
-
               <div>
                 <label htmlFor="email" className="block text-sm font-semibold text-slate-300 mb-2">
                   Email Address
@@ -310,11 +306,10 @@ function Services({ scrollToSection }) {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   className="w-full px-4 py-3 bg-slate-800/50 border border-purple-500/20 rounded-lg text-white placeholder-slate-500 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all"
-                  placeholder="john@example.com"
+                  placeholder="Email"
                   required
                 />
               </div>
-
               <div>
                 <label htmlFor="phone" className="block text-sm font-semibold text-slate-300 mb-2">
                   Phone Number
@@ -325,11 +320,39 @@ function Services({ scrollToSection }) {
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="w-full px-4 py-3 bg-slate-800/50 border border-purple-500/20 rounded-lg text-white placeholder-slate-500 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/20 transition-all"
-                  placeholder="+254 700 000 000"
+                  placeholder="Phone"
                   required
                 />
               </div>
-
+              <div>
+                <label className="block text-sm font-semibold text-slate-300 mb-2">
+                  Payment Option
+                </label>
+                <div className="flex gap-4">
+                  <label className="flex items-center gap-2 text-slate-300 text-sm">
+                    <input
+                      type="radio"
+                      name="paymentOption"
+                      value="deposit"
+                      checked={paymentOption === "deposit"}
+                      onChange={() => setPaymentOption("deposit")}
+                      className="text-purple-500 focus:ring-purple-500"
+                    />
+                    Pay 50% Deposit ({formatPrice(selectedService?.price * 0.5)})
+                  </label>
+                  <label className="flex items-center gap-2 text-slate-300 text-sm">
+                    <input
+                      type="radio"
+                      name="paymentOption"
+                      value="full"
+                      checked={paymentOption === "full"}
+                      onChange={() => setPaymentOption("full")}
+                      className="text-purple-500 focus:ring-purple-500"
+                    />
+                    Pay 100% Full ({formatPrice(selectedService?.price)})
+                  </label>
+                </div>
+              </div>
               <button
                 type="submit"
                 className="w-full mt-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold rounded-lg transition-all duration-300 shadow-lg shadow-purple-500/30"
@@ -337,6 +360,38 @@ function Services({ scrollToSection }) {
                 Proceed to Payment
               </button>
             </form>
+          </div>
+        </div>
+      )}
+
+      {/* Success Confirmation Modal */}
+      {showSuccess && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm">
+          <div className="relative w-full max-w-md bg-slate-900 border border-purple-500/30 rounded-2xl p-6 md:p-8 shadow-2xl shadow-purple-500/20 text-center">
+            <button
+              onClick={closeSuccess}
+              className="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors"
+            >
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+            <CheckCircle size={56} className="mx-auto text-purple-400 mb-4" />
+            <h3 className="text-2xl font-black text-white mb-4">
+              Payment Successful! 🎉
+            </h3>
+            <p className="text-purple-300 mb-4 font-mono bg-slate-800/50 px-3 py-1 rounded-lg">
+              Reference: {successData?.reference}
+            </p>
+            <p className="text-sm text-slate-300 mb-6">
+              We'll contact you at <span className="font-semibold text-white">{successData?.email}</span> to start your project.
+            </p>
+            <button
+              onClick={closeSuccess}
+              className="w-full py-3 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 text-white font-bold rounded-lg transition-all duration-300 shadow-lg shadow-purple-500/30"
+            >
+              Got It!
+            </button>
           </div>
         </div>
       )}
