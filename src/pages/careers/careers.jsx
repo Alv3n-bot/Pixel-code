@@ -98,8 +98,8 @@ const POSITIONS = [
     id: 5,
     title: "Sales Executive",
     department: "Sales",
-    type: "part-time / Commission-based",
-    location: "Nairobi",
+    type: "Commission-based",
+    location: "Remote",
     icon: Megaphone,
     isOpen: true,
     description: "Drive business growth by connecting with clients and closing deals for AI-powered web solutions.",
@@ -281,12 +281,14 @@ function Careers() {
                         </div>
                       </div>
                     </div>
-                    <button
-                      onClick={() => handleApply(position)}
-                      className="bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold px-8 py-3 rounded-xl hover:shadow-xl hover:shadow-purple-500/50 hover:scale-105 transition-all duration-300 text-base"
-                    >
-                      Apply Now
-                    </button>
+
+                     <button
+            className="ml-4 bg-gray-900 border-2 border-purple-500 text-purple-400 font-mono font-semibold px-5 py-2.5 rounded-lg hover:bg-purple-500 hover:text-gray-900 hover:border-purple-400 hover:shadow-lg hover:shadow-purple-500/40 hover:scale-102 transition-all duration-200"
+            onClick={() => handleApply(position)}
+          >
+            Apply Now
+          </button>
+                    
                   </div>
                   <p className="text-base text-gray-300 mb-6 leading-relaxed">
                     {position.description}
@@ -350,7 +352,7 @@ function Careers() {
                     value={formData.fullName}
                     onChange={handleInputChange}
                     required
-                    placeholder="Jane Mwangi"
+                   
                     className="w-full rounded-xl border border-purple-500/20 bg-gray-900/50 text-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
@@ -362,7 +364,7 @@ function Careers() {
                     value={formData.email}
                     onChange={handleInputChange}
                     required
-                    placeholder="you@example.com"
+                    
                     className="w-full rounded-xl border border-purple-500/20 bg-gray-900/50 text-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
@@ -376,7 +378,7 @@ function Careers() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     required
-                    placeholder="+254 712 345 678"
+                    
                     className="w-full rounded-xl border border-purple-500/20 bg-gray-900/50 text-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
@@ -388,7 +390,7 @@ function Careers() {
                     value={formData.experience}
                     onChange={handleInputChange}
                     required
-                    placeholder="e.g., 3 years"
+                    
                     className="w-full rounded-xl border border-purple-500/20 bg-gray-900/50 text-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                   />
                 </div>
@@ -403,7 +405,7 @@ function Careers() {
                   value={formData.portfolio}
                   onChange={handleInputChange}
                   required={selectedPosition?.department === "Tech"}
-                  placeholder="https://yourportfolio.com"
+                 
                   className="w-full rounded-xl border border-purple-500/20 bg-gray-900/50 text-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 />
               </div>
@@ -414,7 +416,7 @@ function Careers() {
                   name="linkedin"
                   value={formData.linkedin}
                   onChange={handleInputChange}
-                  placeholder="https://linkedin.com/in/yourprofile"
+                  
                   className="w-full rounded-xl border border-purple-500/20 bg-gray-900/50 text-white px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
                 />
               </div>
