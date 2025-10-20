@@ -13,7 +13,8 @@ import Fitness from './pages/fitness/Fitness';
 import Careers from './pages/careers/careers';
 import SalesDashboard from './pages/introToSales/Sales';
 import Confirmation from "./pages/Confirmation";
-
+import SalesContract from './pages/SalesContract';
+import RealEstateWebsite from './pages/RealEstate/RealEstate';
 //components
 import Contact from './components/Contact';
 import Header from './components/Header';
@@ -72,6 +73,9 @@ function App() {
         <Route path="/careers" element={<Careers />} />
         <Route path="/sales" element={<SalesDashboard />} />
         <Route path="/confirmation" element={<Confirmation />} />
+        <Route path="/contract/sales-executive" element={<SalesContract />} />
+        <Route path="/luxe" element={<RealEstateWebsite />} />
+        
               </Routes>
     </Router>
   );

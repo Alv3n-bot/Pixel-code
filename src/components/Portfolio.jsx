@@ -34,12 +34,12 @@ const PORTFOLIO = [
     image: "https://mactavis.com/images/kili-web2.webp",
     route: "/restaurant"
   },
-  {
+ {
     id: 5,
     name: "Law Firm",
     title: "Legal Associates",
     description: "Professional service site with booking",
-    image: "https://webdesign.ke/wp-content/uploads/2025/04/booking-and-listing-website-design-kenya-1119x800.webp",
+    image: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=800&q=80",
     route: "/law-firm"
   },
   {
@@ -49,6 +49,14 @@ const PORTFOLIO = [
     description: "Membership portal with class schedules",
     image: "https://cdn.cssauthor.com/wp-content/uploads/2022/03/Fitlife.jpg?strip=all&lossy=1&ssl=1",
     route: "/fitness-app"
+  },
+  {
+    id: 7,
+    name: "Real Estate",
+    title: "LuxeHomes Realty",
+    description: "Premium property listings with advanced search",
+    image: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=800&q=80",
+    route: "/luxe"
   }
 ];
 
