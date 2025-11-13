@@ -160,10 +160,10 @@ export default function RealEstateWebsite() {
         />
         <div className="absolute inset-0 z-20 flex items-center justify-center">
           <div className="text-center text-white px-4 max-w-4xl mx-auto">
-            <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6">
               Find Your Dream Home
             </h1>
-            <p className="text-xl md:text-2xl mb-12 text-gray-200">
+            <p className="text-lg sm:text-xl md:text-2xl mb-8 sm:mb-12 text-gray-200">
               Discover luxury properties in the world's most prestigious locations
             </p>
             
@@ -229,7 +229,7 @@ export default function RealEstateWebsite() {
           </div>
 
           {/* Filter Buttons */}
-          <div className="flex justify-center gap-4 mb-12 flex-wrap">
+          <div className="flex justify-center gap-2 sm:gap-4 mb-8 sm:mb-12 flex-wrap px-4">
             {[
               { label: 'All Properties', value: 'all' },
               { label: 'Luxury', value: 'luxury' },
@@ -239,7 +239,7 @@ export default function RealEstateWebsite() {
               <button
                 key={filter.value}
                 onClick={() => setActiveFilter(filter.value)}
-                className={`px-6 py-3 rounded-full font-semibold transition-all ${
+                className={`px-4 sm:px-6 py-2 sm:py-3 rounded-full text-sm sm:text-base font-semibold transition-all ${
                   activeFilter === filter.value
                     ? 'bg-gradient-to-r from-purple-600 to-indigo-600 text-white shadow-lg'
                     : 'bg-white text-gray-700 hover:bg-gray-100'
@@ -295,9 +295,10 @@ export default function RealEstateWebsite() {
                   </div>
                   
                   <div className="flex items-center justify-between">
-                    <span className="text-3xl font-bold text-purple-600">{property.price}</span>
-                    <button className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-6 py-2 rounded-lg hover:from-purple-700 hover:to-indigo-700 transition-all flex items-center gap-2 group">
-                      View Details
+                    <span className="text-2xl sm:text-3xl font-bold text-purple-600">{property.price}</span>
+                    <button className="bg-gradient-to-r from-purple-600 to-indigo-600 text-white px-4 sm:px-6 py-2 rounded-lg text-sm sm:text-base hover:from-purple-700 hover:to-indigo-700 transition-all flex items-center gap-2 group">
+                      <span className="hidden sm:inline">View Details</span>
+                      <span className="sm:hidden">View</span>
                       <ChevronRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
                     </button>
                   </div>
@@ -309,21 +310,21 @@ export default function RealEstateWebsite() {
       </div>
 
       {/* CTA Section */}
-      <div className="bg-gradient-to-r from-purple-900 to-indigo-900 py-20">
+      <div className="bg-gradient-to-r from-purple-900 to-indigo-900 py-12 sm:py-16 md:py-20">
         <div className="max-w-4xl mx-auto text-center px-4">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 sm:mb-6">
             Ready to Find Your Dream Home?
           </h2>
-          <p className="text-xl text-purple-100 mb-8">
+          <p className="text-lg sm:text-xl text-purple-100 mb-6 sm:mb-8">
             Let our expert agents guide you through your real estate journey
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-purple-600 px-8 py-4 rounded-xl font-bold hover:bg-gray-100 transition-all flex items-center justify-center gap-2">
-              <Phone className="h-5 w-5" />
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+            <button className="bg-white text-purple-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold hover:bg-gray-100 transition-all flex items-center justify-center gap-2">
+              <Phone className="h-4 w-4 sm:h-5 sm:w-5" />
               Call Us Now
             </button>
-            <button className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-xl font-bold hover:bg-white hover:text-purple-600 transition-all flex items-center justify-center gap-2">
-              <Mail className="h-5 w-5" />
+            <button className="bg-transparent border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-xl text-sm sm:text-base font-bold hover:bg-white hover:text-purple-600 transition-all flex items-center justify-center gap-2">
+              <Mail className="h-4 w-4 sm:h-5 sm:w-5" />
               Get In Touch
             </button>
           </div>
