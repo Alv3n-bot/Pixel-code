@@ -4,53 +4,53 @@ import { Menu, X } from 'lucide-react';
 const Header = ({ isScrolled }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const navItems = ['Home', 'Services', 'Portfolio', 'Pricing', 'About', 'Contact'];
+
   return (
-    <header className={`fixed w-full top-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-white shadow-lg' : 'bg-transparent'}`}>
-      <nav className="container mx-auto px-4 py-4">
+    <header className={`fixed w-full top-0 z-50 ${isScrolled ? 'bg-white shadow-md' : 'bg-white/95 backdrop-blur-sm'}`}>
+      <nav className="container mx-auto px-4 py-3">
         <div className="flex justify-between items-center">
+          {/* Logo */}
           <div className="flex items-center gap-2">
-            <svg viewBox="0 0 48 48" className="w-8 h-8">
-              <circle cx="24" cy="24" r="22" fill="none" stroke="#10b981" strokeWidth="2" />
-              <line x1="24" y1="2" x2="24" y2="46" stroke="#10b981" strokeWidth="1.5" />
-              <line x1="2" y1="24" x2="46" y2="24" stroke="#10b981" strokeWidth="1.5" />
-              <line x1="8" y1="8" x2="40" y2="40" stroke="#10b981" strokeWidth="1.5" />
-              <line x1="40" y1="8" x2="8" y2="40" stroke="#10b981" strokeWidth="1.5" />
-              <circle cx="24" cy="24" r="3" fill="#10b981" />
-              <circle cx="24" cy="8" r="2" fill="#10b981" />
-              <circle cx="24" cy="40" r="2" fill="#10b981" />
-              <circle cx="8" cy="24" r="2" fill="#10b981" />
-              <circle cx="40" cy="24" r="2" fill="#10b981" />
-            </svg>
-            <span className="text-xl font-bold text-black">Web<span className="text-emerald-500">Mtaani</span></span>
+            <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
+              <span className="text-white font-bold text-sm">W</span>
+            </div>
+            <span className="text-lg font-bold text-gray-900">
+              Web<span className="text-emerald-500">Mtaani</span>
+            </span>
           </div>
-          
-          <div className="hidden md:flex space-x-8">
-            {['Home', 'Services', 'Portfolio', 'Pricing', 'About', 'Contact'].map((item) => (
+
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center gap-6">
+            {navItems.map((item) => (
               <a 
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                className="text-gray-700 hover:text-emerald-500 transition-colors text-sm font-medium"
               >
                 {item}
               </a>
             ))}
           </div>
 
+          {/* Mobile Menu Button */}
           <button 
-            className="md:hidden text-gray-700"
+            className="md:hidden p-2 text-gray-700 hover:text-emerald-500"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
+        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden mt-4 pb-4 space-y-3">
-            {['Home', 'Services', 'Portfolio', 'Pricing', 'About', 'Contact'].map((item) => (
+          <div className="md:hidden mt-3 pt-3 border-t border-gray-200">
+            {navItems.map((item) => (
               <a 
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="block text-gray-700 hover:text-blue-600 transition-colors font-medium"
+                className="block py-2 text-gray-700 hover:text-emerald-500 transition-colors font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item}
