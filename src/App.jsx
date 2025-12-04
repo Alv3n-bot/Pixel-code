@@ -26,8 +26,8 @@ const WebMtaaniWebsite = () => {
       <Header isScrolled={isScrolled} />
       <Hero />
       <Services />
-      <Portfolio />
       <Pricing />
+      <Portfolio />
       <About />
       <Testimonials />
       <CTA />
