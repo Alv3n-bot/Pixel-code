@@ -1,4 +1,4 @@
-import { useState } from 'react';
+  import { useState } from 'react';
 import { ShoppingCart, X, Trash2, Plus, Minus, Phone, Check, Loader2, Tag } from 'lucide-react';
 
 const FashionBoutique = () => {
