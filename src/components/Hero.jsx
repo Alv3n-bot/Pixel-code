@@ -6,9 +6,9 @@ const Hero = () => {
     <section id="home" className="pt-32 pb-20 px-4 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
       <div className="container mx-auto max-w-4xl text-center">
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-          Professional Digital Solutions for Your Business
+          Web Design, AI Automation & Digital Marketing to Help Grow Your Business.
         </h1>
-        
+          
         <p className="text-lg md:text-xl mb-10 text-blue-100">
           Websites • Apps • AI Automation
         </p>

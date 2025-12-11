@@ -98,7 +98,7 @@ const About = () => {
           </div>
         </div>
 
-        {/* Team Section with Real Images */}
+        {/* Team Section with Real Images 
         <div className="text-center">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Our Team</h2>
           <p className="text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
@@ -154,7 +154,7 @@ const About = () => {
               <p className="text-gray-600">Social Media Manager</p>
             </div>
           </div>
-        </div>
+        </div> */}  
 
       </div>
     </section>

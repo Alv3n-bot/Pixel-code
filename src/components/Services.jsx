@@ -11,7 +11,7 @@ const Services = () => {
     },
     {
       icon: <Share2 className="w-12 h-12" />,
-      title: "AI Automation for Businesses",
+      title: "AI Automation ",
       description: "Streamline your workflows and save time with AI-powered automation. Automate customer support, lead collection, emails, forms, and repetitive tasks so you can focus on growing your business.",
       link: "#services"
     },
