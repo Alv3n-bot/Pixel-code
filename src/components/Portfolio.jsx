@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Portfolio = () => {
   const [activeFilter, setActiveFilter] = useState('all');
@@ -8,43 +9,33 @@ const Portfolio = () => {
       id: 1,
       category: "schools",
       title: "Greenfield Academy",
-      image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop",
-      description: "Modern school website with online admissions"
+      image: "https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=400&fit=crop",
+      description: "Modern school website with online admissions",
+      link: "/greenfield-academy"
     },
     {
       id: 2,
-      category: "business",
-      title: "Fresh Grocers Kenya",
-      image: "https://images.unsplash.com/photo-1542838132-92c53300491e?w=600&h=400&fit=crop",
-      description: "E-commerce platform with M-Pesa integration"
+      category: "ecommerce",
+      title: "Fashion Boutique",
+      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop",
+      description: "E-commerce platform with modern design",
+      link: "/fashion-boutique"
     },
     {
       id: 3,
       category: "business",
-      title: "Urban Barbershop",
-      image: "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?w=600&h=400&fit=crop",
-      description: "Booking system and social media campaign"
+      title: "Safari Tours",
+      image: "https://images.unsplash.com/photo-1516426122078-c23e76319801?w=600&h=400&fit=crop",
+      description: "Tour booking and adventure showcase",
+      link: "/safari-tours"
     },
     {
       id: 4,
-      category: "schools",
-      title: "Tech Institute",
-      image: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?w=600&h=400&fit=crop",
-      description: "Online learning platform and student portal"
-    },
-    {
-      id: 5,
-      category: "ecommerce",
-      title: "Fashion Hub KE",
-      image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=600&h=400&fit=crop",
-      description: "Complete e-commerce solution with inventory"
-    },
-    {
-      id: 6,
       category: "business",
-      title: "Wellness Spa",
-      image: "https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=600&h=400&fit=crop",
-      description: "Appointment booking and service showcase"
+      title: "Fitness Center",
+      image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&h=400&fit=crop",
+      description: "Fitness studio with class schedules",
+      link: "/fitness"
     }
   ];
 
@@ -93,9 +84,12 @@ const Portfolio = () => {
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                   <h3 className="text-2xl font-bold mb-2">{project.title}</h3>
                   <p className="text-gray-200">{project.description}</p>
-                  <button className="mt-4 bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition-colors">
-                    View Case Study
-                  </button>
+                  <Link 
+                    to={project.link}
+                    className="inline-block mt-4 bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-50 transition-colors"
+                  >
+                    View Live Site
+                  </Link>
                 </div>
               </div>
             </div>

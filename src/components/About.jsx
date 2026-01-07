@@ -16,13 +16,13 @@ const About = () => {
         <div className="grid md:grid-cols-2 gap-16 items-center mb-24">
           <div className="order-2 md:order-1">
             <h2 className="text-5xl md:text-6xl font-bold mb-6 text-blue-600">
-              About <span className=" font-bold text-black">Web<span className="text-emerald-500">Mtaani</span></span>
+              About
             </h2>
             <p className="text-xl text-gray-600 mb-6 leading-relaxed">
-              We're a team of digital experts based in Kenya, helping local businesses and schools thrive online with affordable, effective solutions.
+              Pixel & Code partners with Kenyan businesses and educational institutions to build digital solutions that drive measurable growth and streamline operations.
             </p>
             <p className="text-lg text-gray-500 mb-8 leading-relaxed">
-              No fancy jargon, just real results that work for the Kenyan market.
+              From startups to established enterprises, our clients gain the technical infrastructure and online presence needed to compete in today's digital economy.
             </p>
             
             {/* Stats */}
@@ -48,26 +48,26 @@ const About = () => {
             <div className="absolute -bottom-8 -left-8 bg-blue-600 text-white p-6 rounded-2xl shadow-xl max-w-xs hidden md:block">
               <p className="font-bold text-lg mb-2">Our Mission</p>
               <p className="text-sm text-blue-100">
-                Making professional digital marketing accessible for every Kenyan business.
+                Empowering Kenyan organizations with scalable digital infrastructure and strategic online positioning.
               </p>
             </div>
           </div>
         </div>
 
-        {/* Why Choose Us */}
+        {/* What We Deliver */}
         <div className="mb-24">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 text-gray-900">
-            Why Choose Us?
+            What Your Business Gets
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <div className="group hover:-translate-y-2 transition-all duration-300">
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-8 rounded-2xl h-full">
                 <div className="w-16 h-16 bg-blue-600 rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
-                  💰
+                  💼
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-gray-900">Affordable</h3>
+                <h3 className="text-2xl font-bold mb-3 text-gray-900">Enterprise-Grade Solutions</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Professional quality at prices that work for Kenyan businesses. No hidden charges.
+                  Your business receives professional-quality websites, systems, and digital infrastructure built to scale with transparent, competitive pricing.
                 </p>
               </div>
             </div>
@@ -75,11 +75,11 @@ const About = () => {
             <div className="group hover:-translate-y-2 transition-all duration-300">
               <div className="bg-gradient-to-br from-purple-50 to-purple-100 p-8 rounded-2xl h-full">
                 <div className="w-16 h-16 bg-purple-600 rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
-                  ⚡
+                  📊
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-gray-900">Fast Delivery</h3>
+                <h3 className="text-2xl font-bold mb-3 text-gray-900">Data-Driven Strategy</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  Quick turnaround without compromising quality. Your project gets priority attention.
+                  Your marketing campaigns are optimized through analytics and performance tracking, ensuring every shilling spent generates measurable returns.
                 </p>
               </div>
             </div>
@@ -89,72 +89,14 @@ const About = () => {
                 <div className="w-16 h-16 bg-green-600 rounded-xl flex items-center justify-center text-3xl mb-6 group-hover:scale-110 transition-transform">
                   🎯
                 </div>
-                <h3 className="text-2xl font-bold mb-3 text-gray-900">Real Results</h3>
+                <h3 className="text-2xl font-bold mb-3 text-gray-900">Local Market Expertise</h3>
                 <p className="text-gray-600 leading-relaxed">
-                  We track ROI and share metrics that matter. Your success is our success.
+                  Your brand connects with Kenyan audiences through culturally relevant content and strategies tailored to local consumer behavior and preferences.
                 </p>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Team Section with Real Images 
-        <div className="text-center">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900">Our Team</h2>
-          <p className="text-gray-600 text-lg mb-12 max-w-2xl mx-auto">
-            Passionate professionals dedicated to your success
-          </p>
-
-          <div className="grid md:grid-cols-4 gap-8">
-            <div className="group">
-              <div className="overflow-hidden rounded-2xl mb-4 shadow-lg group-hover:shadow-2xl transition-shadow">
-                <img 
-                  src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&crop=faces" 
-                  alt="Alex Kipchoge"
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Alex Kipchoge</h3>
-              <p className="text-gray-600">Lead Designer</p>
-            </div>
-
-            <div className="group">
-              <div className="overflow-hidden rounded-2xl mb-4 shadow-lg group-hover:shadow-2xl transition-shadow">
-                <img 
-                  src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=400&h=400&fit=crop&crop=faces" 
-                  alt="Grace Omondi"
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Grace Omondi</h3>
-              <p className="text-gray-600">Full Stack Developer</p>
-            </div>
-
-            <div className="group">
-              <div className="overflow-hidden rounded-2xl mb-4 shadow-lg group-hover:shadow-2xl transition-shadow">
-                <img 
-                  src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=400&h=400&fit=crop&crop=faces" 
-                  alt="Kevin Mutua"
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Kevin Mutua</h3>
-              <p className="text-gray-600">Digital Marketer</p>
-            </div>
-
-            <div className="group">
-              <div className="overflow-hidden rounded-2xl mb-4 shadow-lg group-hover:shadow-2xl transition-shadow">
-                <img 
-                  src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400&h=400&fit=crop&crop=faces" 
-                  alt="Lucy Kamau"
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900">Lucy Kamau</h3>
-              <p className="text-gray-600">Social Media Manager</p>
-            </div>
-          </div>
-        </div> */}  
 
       </div>
     </section>

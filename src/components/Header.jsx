@@ -3,7 +3,6 @@ import { Menu, X } from 'lucide-react';
 
 const Header = ({ isScrolled }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const navItems = ['Home', 'Services', 'Portfolio', 'Pricing', 'About', 'Contact'];
 
   return (
@@ -13,10 +12,10 @@ const Header = ({ isScrolled }) => {
           {/* Logo */}
           <div className="flex items-center gap-2">
             <div className="w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
-              <span className="text-white font-bold text-sm">W</span>
+              <span className="text-white font-bold text-sm">P&C</span>
             </div>
             <span className="text-lg font-bold text-gray-900">
-              Web<span className="text-emerald-500">Mtaani</span>
+              Pixel<span className="text-emerald-500">&Code</span>
             </span>
           </div>
 
